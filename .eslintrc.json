@@ -22,7 +22,7 @@
             }
         }
     ],
-    "ignorePatterns": [".eslintrc.js", "tests"],
+    "ignorePatterns": [".eslintrc.js", "build"],
     "rules": {
         "semi": "off",
         "quotes": "off",

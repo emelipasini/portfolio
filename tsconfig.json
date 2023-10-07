@@ -1,10 +1,10 @@
 {
     "compilerOptions": {
         "target": "es6",
-        "module": "commonjs",
+        "module": "es6",
         "lib": ["es6"],
-        "rootDir": "./src",
-        "outDir": "./build",
+        "rootDir": "src",
+        "outDir": "build",
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
         "strict": true,
@@ -16,5 +16,7 @@
         "noImplicitReturns": true,
         "noFallthroughCasesInSwitch": true,
         "skipLibCheck": true
-    }
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules", "build"]
 }
