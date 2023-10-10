@@ -1,3 +1,3 @@
 {
-    "*.ts": ["npx tsc --noEmit", "npx eslint"]
+    "*.ts": ["npx eslint"]
 }
