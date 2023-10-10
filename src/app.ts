@@ -2,7 +2,10 @@ import { resolve } from "node:path";
 import express, { json } from "express";
 import "dotenv/config";
 
+import { version } from "../package.json";
+
 import { corsMiddleware } from "./middlewares/cors.js";
+import { expensesRouter } from "./routes/expenses.js";
 
 const app = express();
 
@@ -14,8 +17,15 @@ app.set("view engine", "ejs");
 app.set("views", resolve("views"));
 app.use(express.static(resolve("public")));
 
+app.use("/api/expenses", expensesRouter);
+
+app.get("/version", (_req, res) => {
+    const projectVersion = version;
+    res.json({ version: projectVersion });
+});
+
 app.get("/health", (_req, res) => {
-    res.send("OK");
+    res.json({ status: "Ok" });
 });
 
 app.get("/", (_req, res) => {

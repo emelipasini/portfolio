@@ -2,12 +2,11 @@
     "name": "portfolio",
     "version": "0.0.1",
     "description": "",
-    "main": "index.js",
-    "type": "module",
+    "main": "app.js",
     "scripts": {
         "build": "rm -rf ./build && tsc",
-        "start": "node build/index.js",
-        "dev": "node --watch build/index.js",
+        "start": "node build/src/app.js",
+        "dev": "node --watch build/src/app.js",
         "check-types": "tsc --noEmit",
         "lint": "eslint --ext .ts src",
         "prepare": "husky install"
@@ -45,6 +44,7 @@
     "dependencies": {
         "dotenv": "16.3.1",
         "ejs": "3.1.9",
-        "express": "4.18.2"
+        "express": "4.18.2",
+        "zod": "3.22.4"
     }
 }
