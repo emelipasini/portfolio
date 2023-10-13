@@ -1,13 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Emeli Pasini</title>
-        <link rel="stylesheet" href="css/style.css" />
+        <%- include('./partials/head'); %>
     </head>
     <body>
-        <h1>Welcolme to my portfolio!</h1>
-        <h2>Thanks for passing by...</h2>
+        <%- include('./partials/header'); %>
+
+        <main>
+            <p>
+                <strong>2 years of experience</strong> being Full Stack Developer. Passionate Backender searching for
+                new challenges.
+            </p>
+            <p>Argentinian Italian living in Bochum, Germany.</p>
+
+            <h2 id="experience">Experience</h2>
+
+            <ul>
+                <li class="list-item">
+                    <p>
+                        <a href="https://www.geosystems.com.ar/en/" target="_blank" rel="noreferrer">Geosystems S.A.</a>
+                        Apr 2022 - Jul 2023<br />
+                        Junior Full Stack Developer
+                    </p>
+                </li>
+                <li class="list-item">
+                    <p>
+                        Ulthar Software Feb 2021 - Aug 2021<br />
+                        Junior Backend Developer
+                    </p>
+                </li>
+                <li class="list-item">
+                    <p>
+                        <a href="https://www.digitalhouse.com/ar" target="_blank" rel="noreferrer">Digital House</a> Feb
+                        2020 - Jun 2021<br />
+                        Adjunct Professor of Full Stack Bootcamp
+                    </p>
+                </li>
+            </ul>
+
+            <img
+                id="photo-image"
+                width="200"
+                height="200"
+                title="Photo of Emelí Pasini"
+                alt="A photograph of Emelí Pasini smiling and looking at the camera."
+                src="/images/pfp.jpg"
+            />
+
+            <a download href="/files/Emelí Pasini - CV.pdf">
+                <img
+                    id="photo-image"
+                    width="300"
+                    height="200"
+                    title="Download resume of Emelí Pasini"
+                    alt="A picture of my resume"
+                    src="/images/resume.png"
+                />
+            </a>
+
+            <aside>
+                <header>
+                    <h3>My <span>favorite</span> technologies</h3>
+                </header>
+                <ol type="1" reversed start="10">
+                    <li>Node.js</li>
+                    <li>TypeScript</li>
+                    <li>JavaScript</li>
+                    <li>Express.js</li>
+                    <li>Jest</li>
+                    <li>PostgreSQL</li>
+                    <li>MongoDB</li>
+                    <li>Git</li>
+                    <li>Shell</li>
+                    <li>Swagger</li>
+                </ol>
+            </aside>
+
+            <h2 id="projects">Projects</h2>
+
+            <section>
+                <article>
+                    <header>
+                        <h4>Project carried out for the government of Ciudad Autónoma de Buenos Aires</h4>
+                    </header>
+                    <p>
+                        Re-engineering an existing API that provides geographic information, by improving the structure
+                        and quality of the code.<br />
+                        Renewal of an NPM package with an improved design and improved technologies.
+                    </p>
+                    <footer>
+                        <small>Used technologies: TypeScript, Python, Flask, SCSS, React, Swagger</small>
+                    </footer>
+                </article>
+
+                <article>
+                    <header>
+                        <h4>Project implementation for a private company</h4>
+                    </header>
+                    <p>
+                        Development of an API that communicates with the database and with another external API that
+                        controls the entire flow of information in the company.
+                    </p>
+                    <footer>
+                        <small>Used technologies: C#, ASP.NET, xUnit, Swagger</small>
+                    </footer>
+                </article>
+
+                <article>
+                    <header>
+                        <h4>Execution of a project for the Buenos Aires water treatment plant</h4>
+                    </header>
+                    <p>
+                        Reaching the final stage of the project. Made aesthetic corrections, fixed bugs, improved code
+                        quality and implemented final features.
+                    </p>
+                    <footer>
+                        <small>Used technologies: Angular, JavaScript, Openlayers, D3.js</small>
+                    </footer>
+                </article>
+
+                <article>
+                    <header>
+                        <h4>Project for a private client</h4>
+                    </header>
+                    <p>Development of an application to book and hold virtual appointments with doctors.</p>
+                    <footer>
+                        <small>Used technologies: Serverless, Node.js, TypeScript, AWD Lambda, MongoDB, Jest</small>
+                    </footer>
+                </article>
+            </section>
+
+            <h2 id="questions">Frequently asked questions</h2>
+
+            <section>
+                <details open>
+                    <summary>What is your education?</summary>
+                    <p>
+                        I took a full stack developer course in 2019 and started to dedicate myself to programming. I am
+                        also a computer technician and went to university to study astronomy for 3 years, where I learnt
+                        logic, problem solving, proactivity and independence.
+                    </p>
+                </details>
+
+                <details>
+                    <summary>(Open to work) What are you looking for?</summary>
+                    <p>
+                        I would like to be a Junior Backend Developer in a human company with warm people who work as a
+                        team and help each other. I would love to work remotely with Nodejs using TypeScript or
+                        JavaScript and create APIs using TDD.
+                    </p>
+                </details>
+
+                <details>
+                    <summary>What languages do you speak?</summary>
+                    <p>I speak Spanish, English and I'm learning German (near A1 level).</p>
+                </details>
+
+                <details>
+                    <summary>What are your other interests?</summary>
+                    <p>I like to play video games like WoW or Factorio, reading about astronomy and going for walks.</p>
+                </details>
+            </section>
+        </main>
+
+        <%- include('./partials/footer'); %>
     </body>
 </html>
