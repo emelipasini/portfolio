@@ -45,8 +45,40 @@
     height: 100vh;
 }
 
+#experience p {
+    font-size: 1.2em;
+}
+
 #experience ul > li {
     color: var(--green);
+}
+
+#experience .date {
+    margin-left: 10px;
+}
+
+#experience .position {
+    display: block;
+    margin-top: 10px;
+}
+
+#experience .more-info {
+    font-style: italic;
+    color: var(--blue);
+}
+
+.technologies h3 {
+    font-size: 1.3em;
+}
+
+.technologies li {
+    font-size: 1.1em;
+    margin-left: 15px;
+}
+
+.technologies strong {
+    font-style: italic;
+    color: var(--blue);
 }
 
 #projects {
