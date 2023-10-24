@@ -1,3 +1,125 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --main-bg-color: #282c34;
+    --secondary-bg-color: #21252b62;
+    --purple: #c169ca;
+    --red: #cb646e;
+    --green: #8bc070;
+    --blue: #57aaf0;
+    --yellow: #d9b56e;
+    --white: #ffffff;
+}
+
+html {
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
 body {
+    margin: 0;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: var(--main-bg-color);
+}
+
+h1 {
+    font-size: 3.5rem;
+    color: var(--blue);
+}
+
+h2 {
+    font-size: 2rem;
+    color: var(--purple);
+}
+
+h3,
+h4,
+summary {
+    color: var(--green);
+}
+
+p {
+    color: var(--red);
+}
+
+small,
+ol > li {
+    font-style: italic;
+    color: var(--yellow);
+}
+
+a {
+    text-decoration: none;
+    color: var(--white);
+}
+
+a:hover {
+    text-decoration: solid underline var(--blue);
+    color: var(--blue);
+}
+
+.main-header {
+    margin: 0;
+    backdrop-filter: blur(10px);
+    width: 100%;
+    position: fixed;
+}
+
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px 5px 20px;
+}
+
+.navigation > .logo > a {
+    margin-right: 15px;
+}
+
+.navigation > .internal-links > a {
+    margin-left: 10px;
+}
+
+.main-footer {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--secondary-bg-color);
+}
+
+#contact {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.contact-title {
+    padding-left: 30px;
+}
+
+.social-media {
+    display: flex;
+    align-items: center;
+}
+
+.social-media > a {
+    margin-left: 5px;
+}
+
+.signature {
+    color: var(--blue);
+    display: block;
+    text-align: center;
+    padding: 10px;
+    font-weight: 600;
+    margin-top: 20px;
 }
