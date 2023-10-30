@@ -1,3 +1,161 @@
+/* TODO: FIX SCROLL */
+.main-page {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-picture > img {
+    border-radius: 100%;
+    width: 40%;
+    display: block;
+    margin: 70px auto 0 auto;
+}
+
+.presentation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-wrap: balance;
+    margin-top: 30px;
+}
+
+.presentation > * {
+    text-align: left;
+    width: 80%;
+    margin: 1px;
+}
+
+.presentation > h2 {
+    margin-top: 10px;
+}
+
+.presentation > h3 {
+    margin-top: 20px;
+}
+
+.presentation > p,
+.presentation > small {
+    margin-top: 7px;
+}
+
+#experience {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-wrap: balance;
+    margin: 50px auto;
+}
+
+#experience p {
+    font-size: 1.2em;
+}
+
+#experience ul > li {
+    color: var(--green);
+}
+
+#experience .date {
+    display: block;
+}
+
+#experience .position {
+    display: block;
+    margin-top: 10px;
+}
+
+#experience .more-info {
+    font-style: italic;
+    color: var(--blue);
+}
+
+.technologies h3 {
+    margin-top: 50px;
+    font-size: 1.3em;
+}
+
+.technologies li {
+    font-size: 1.1em;
+    margin-left: 15px;
+}
+
+.technologies strong {
+    font-style: italic;
+    color: var(--blue);
+}
+
+#projects,
+#questions {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-wrap: balance;
+    margin: 50px auto;
+}
+
+@media (min-width: 768px) {
+    .profile-picture > img {
+        width: 35%;
+    }
+
+    #experience .date {
+        margin-left: 10px;
+        display: inline;
+    }
+}
+
+@media (min-width: 992px) {
+    .main-page {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    .presentation {
+        width: 50%;
+        margin-top: 135px;
+    }
+
+    .profile-picture {
+        width: 40%;
+        margin-top: 70px;
+    }
+
+    .profile-picture > img {
+        width: 300px;
+    }
+
+    #experience {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 90%;
+        margin-top: 70px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .presentation {
+        height: 100vh;
+        margin-top: 30px;
+    }
+
+    .profile-picture {
+        margin-top: 0;
+    }
+}
+
+/* MEDIA QUERIES */
+
+/*
 .main-page {
     display: flex;
     flex-direction: row;
@@ -7,10 +165,6 @@
 
 .profile-picture {
     padding-right: 75px;
-}
-
-.profile-picture > img {
-    border-radius: 150px;
 }
 
 .presentation {
@@ -26,6 +180,14 @@
     text-align: left;
     width: 80%;
     margin: 1px;
+}
+
+.presentation > h1 {
+    font-size: 3.5rem;
+}
+
+.presentation > h2 {
+    font-size: 2rem;
 }
 
 .presentation > h3 {
@@ -45,40 +207,14 @@
     height: 100vh;
 }
 
-#experience p {
-    font-size: 1.2em;
-}
-
-#experience ul > li {
-    color: var(--green);
-}
-
 #experience .date {
     margin-left: 10px;
-}
-
-#experience .position {
-    display: block;
-    margin-top: 10px;
-}
-
-#experience .more-info {
-    font-style: italic;
-    color: var(--blue);
+    display: inline;
 }
 
 .technologies h3 {
+    margin-top: /no seteado
     font-size: 1.3em;
-}
-
-.technologies li {
-    font-size: 1.1em;
-    margin-left: 15px;
-}
-
-.technologies strong {
-    font-style: italic;
-    color: var(--blue);
 }
 
 #projects {
@@ -97,3 +233,5 @@
     height: 100vh;
     width: 80%;
 }
+
+*/
