@@ -1,4 +1,5 @@
-/* TODO: FIX SCROLL */
+/* TODO: FIX SCROLL MOBILE */
+
 .main-page {
     display: flex;
     flex-direction: column-reverse;
@@ -93,10 +94,31 @@
     width: 80%;
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: center;
     text-wrap: balance;
     margin: 50px auto;
+}
+
+.question {
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    padding: 0.5em 0.5em 0;
+    margin-bottom: 20px;
+}
+
+.question > summary {
+    font-weight: bold;
+    margin: -0.5em -0.5em 0;
+    padding: 0.5em;
+}
+
+.question[open] {
+    padding: 0.5em;
+}
+
+.question[open] summary {
+    border-bottom: 1px solid #aaa;
+    margin-bottom: 0.5em;
 }
 
 @media (min-width: 768px) {
@@ -143,95 +165,71 @@
 }
 
 @media (min-width: 1200px) {
+    .main-page {
+        width: 90%;
+        margin: 0 auto;
+    }
+
     .presentation {
         height: 100vh;
-        margin-top: 30px;
-    }
-
-    .profile-picture {
         margin-top: 0;
     }
+
+    .presentation > h3 {
+        margin-top: 40px;
+    }
+
+    .presentation > p,
+    .presentation > small {
+        margin-top: 7px;
+    }
+
+    .profile-picture,
+    .profile-picture > img {
+        margin-top: 0;
+    }
+
+    .technologies h3 {
+        margin-top: 0;
+        font-size: 1.3em;
+    }
+
+    #experience {
+        width: 90%;
+        justify-content: space-around;
+        height: 100vh;
+    }
+
+    #projects {
+        width: 90%;
+        height: 100vh;
+    }
+
+    .projects-section {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+
+    .project {
+        width: 40%;
+        border: 2px solid white;
+        border-radius: 20px;
+        padding: 0 20px 20px 20px;
+        margin-top: 20px;
+        text-wrap: balance;
+    }
+
+    #questions {
+        height: 100vh;
+    }
+
+    #questions section {
+        width: 60%;
+    }
+
+    .question {
+        margin-top: 20px;
+    }
 }
-
-/* MEDIA QUERIES */
-
-/*
-.main-page {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-}
-
-.profile-picture {
-    padding-right: 75px;
-}
-
-.presentation {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    text-wrap: balance;
-}
-
-.presentation > * {
-    text-align: left;
-    width: 80%;
-    margin: 1px;
-}
-
-.presentation > h1 {
-    font-size: 3.5rem;
-}
-
-.presentation > h2 {
-    font-size: 2rem;
-}
-
-.presentation > h3 {
-    margin-top: 40px;
-}
-
-.presentation > p,
-.presentation > small {
-    margin-top: 7px;
-}
-
-#experience {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    height: 100vh;
-}
-
-#experience .date {
-    margin-left: 10px;
-    display: inline;
-}
-
-.technologies h3 {
-    margin-top: /no seteado
-    font-size: 1.3em;
-}
-
-#projects {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    height: 100vh;
-}
-
-#questions {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    width: 80%;
-}
-
-*/
