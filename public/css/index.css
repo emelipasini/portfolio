@@ -1,10 +1,9 @@
-/* TODO: FIX SCROLL MOBILE */
-
 .main-page {
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
     justify-content: center;
+    height: 100vh;
 }
 
 .profile-picture > img {
@@ -44,12 +43,9 @@
 
 #experience {
     width: 80%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     text-wrap: balance;
-    margin: 50px auto;
+    margin: 0 auto;
+    padding-top: 50px;
 }
 
 #experience p {
@@ -74,6 +70,10 @@
     color: var(--blue);
 }
 
+.technologies {
+    width: 100%;
+}
+
 .technologies h3 {
     margin-top: 50px;
     font-size: 1.3em;
@@ -96,12 +96,32 @@
     flex-direction: column;
     justify-content: center;
     text-wrap: balance;
-    margin: 50px auto;
+    margin: 30px auto;
+    padding-top: 50px;
+}
+
+#questions {
+    margin-bottom: 60px;
+}
+
+.projects-section {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.project {
+    border: 1px solid var(--grey);
+    border-radius: 5px;
+    padding: 0 20px 20px 20px;
+    margin-bottom: 20px;
+    text-wrap: balance;
 }
 
 .question {
-    border: 1px solid #aaa;
-    border-radius: 4px;
+    border: 1px solid var(--grey);
+    border-radius: 5px;
     padding: 0.5em 0.5em 0;
     margin-bottom: 20px;
 }
@@ -117,119 +137,10 @@
 }
 
 .question[open] summary {
-    border-bottom: 1px solid #aaa;
+    border-bottom: 1px solid var(--grey);
     margin-bottom: 0.5em;
 }
 
-@media (min-width: 768px) {
-    .profile-picture > img {
-        width: 35%;
-    }
-
-    #experience .date {
-        margin-left: 10px;
-        display: inline;
-    }
-}
-
-@media (min-width: 992px) {
-    .main-page {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-evenly;
-    }
-
-    .presentation {
-        width: 50%;
-        margin-top: 135px;
-    }
-
-    .profile-picture {
-        width: 40%;
-        margin-top: 70px;
-    }
-
-    .profile-picture > img {
-        width: 300px;
-    }
-
-    #experience {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: space-evenly;
-        width: 90%;
-        margin-top: 70px;
-    }
-}
-
-@media (min-width: 1200px) {
-    .main-page {
-        width: 90%;
-        margin: 0 auto;
-    }
-
-    .presentation {
-        height: 100vh;
-        margin-top: 0;
-    }
-
-    .presentation > h3 {
-        margin-top: 40px;
-    }
-
-    .presentation > p,
-    .presentation > small {
-        margin-top: 7px;
-    }
-
-    .profile-picture,
-    .profile-picture > img {
-        margin-top: 0;
-    }
-
-    .technologies h3 {
-        margin-top: 0;
-        font-size: 1.3em;
-    }
-
-    #experience {
-        width: 90%;
-        justify-content: space-around;
-        height: 100vh;
-    }
-
-    #projects {
-        width: 90%;
-        height: 100vh;
-    }
-
-    .projects-section {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-    }
-
-    .project {
-        width: 40%;
-        border: 2px solid white;
-        border-radius: 20px;
-        padding: 0 20px 20px 20px;
-        margin-top: 20px;
-        text-wrap: balance;
-    }
-
-    #questions {
-        height: 100vh;
-    }
-
-    #questions section {
-        width: 60%;
-    }
-
-    .question {
-        margin-top: 20px;
-    }
+.answer {
+    padding: 0 20px;
 }

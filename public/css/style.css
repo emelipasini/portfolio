@@ -13,6 +13,7 @@
     --blue: #57aaf0;
     --yellow: #d9b56e;
     --white: #ffffff;
+    --grey: #aaa;
 }
 
 html {
@@ -136,65 +137,4 @@ a {
     text-align: center;
     padding: 10px;
     font-weight: 600;
-}
-
-@media (min-width: 768px) {
-    #contact {
-        flex-direction: row;
-        flex-wrap: wrap;
-        width: 80%;
-    }
-
-    .personal-info,
-    .social-media {
-        flex: 1;
-        flex-basis: 30%;
-        display: flex;
-        justify-content: center;
-    }
-}
-
-@media (min-width: 992px) {
-    .navigation {
-        display: flex;
-        justify-content: space-between;
-        padding: 10px 20px 5px 20px;
-    }
-
-    .menu-toggle {
-        display: none;
-    }
-
-    .internal-links {
-        display: block;
-    }
-
-    .internal-links > a {
-        margin-left: 10px;
-    }
-
-    #contact {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-        width: 80%;
-        margin: 0 auto;
-    }
-
-    .personal-info,
-    .social-media {
-        margin-right: 15px;
-    }
-}
-
-@media (min-width: 1200px) {
-    a:hover {
-        text-decoration: solid underline var(--blue);
-        color: var(--blue);
-    }
-
-    .personal-info,
-    .social-media {
-        flex-basis: revert;
-    }
 }
