@@ -1,16 +1,16 @@
 .main-page {
     display: flex;
-    flex-direction: row;
+    flex-direction: column-reverse;
     align-items: center;
-    justify-content: space-evenly;
-}
-
-.profile-picture {
-    padding-right: 75px;
+    justify-content: center;
+    height: 100vh;
 }
 
 .profile-picture > img {
-    border-radius: 150px;
+    border-radius: 100%;
+    width: 40%;
+    display: block;
+    margin: 70px auto 0 auto;
 }
 
 .presentation {
@@ -18,8 +18,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
     text-wrap: balance;
+    margin-top: 30px;
 }
 
 .presentation > * {
@@ -28,8 +28,12 @@
     margin: 1px;
 }
 
+.presentation > h2 {
+    margin-top: 10px;
+}
+
 .presentation > h3 {
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 .presentation > p,
@@ -38,11 +42,10 @@
 }
 
 #experience {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    height: 100vh;
+    width: 80%;
+    text-wrap: balance;
+    margin: 0 auto;
+    padding-top: 50px;
 }
 
 #experience p {
@@ -54,7 +57,7 @@
 }
 
 #experience .date {
-    margin-left: 10px;
+    display: block;
 }
 
 #experience .position {
@@ -67,7 +70,12 @@
     color: var(--blue);
 }
 
+.technologies {
+    width: 100%;
+}
+
 .technologies h3 {
+    margin-top: 50px;
     font-size: 1.3em;
 }
 
@@ -81,19 +89,58 @@
     color: var(--blue);
 }
 
-#projects {
+#projects,
+#questions {
+    width: 80%;
     display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    text-wrap: balance;
+    margin: 30px auto;
+    padding-top: 50px;
 }
 
 #questions {
+    margin-bottom: 60px;
+}
+
+.projects-section {
     display: flex;
     flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    width: 80%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.project {
+    border: 1px solid var(--grey);
+    border-radius: 5px;
+    padding: 0 20px 20px 20px;
+    margin-bottom: 20px;
+    text-wrap: balance;
+}
+
+.question {
+    border: 1px solid var(--grey);
+    border-radius: 5px;
+    padding: 0.5em 0.5em 0;
+    margin-bottom: 20px;
+}
+
+.question > summary {
+    font-weight: bold;
+    margin: -0.5em -0.5em 0;
+    padding: 0.5em;
+}
+
+.question[open] {
+    padding: 0.5em;
+}
+
+.question[open] summary {
+    border-bottom: 1px solid var(--grey);
+    margin-bottom: 0.5em;
+}
+
+.answer {
+    padding: 0 20px;
 }
