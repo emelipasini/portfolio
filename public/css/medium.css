@@ -1,0 +1,86 @@
+@media (min-width: 992px) {
+    /* Styles */
+
+    .navigation {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 20px 5px 20px;
+    }
+
+    .menu-toggle {
+        display: none;
+    }
+
+    .internal-links {
+        display: block;
+    }
+
+    .internal-links > a {
+        margin-left: 10px;
+    }
+
+    #contact {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .personal-info,
+    .social-media {
+        margin-right: 15px;
+    }
+
+    /* Index */
+
+    .main-page {
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+
+    .presentation {
+        width: 50%;
+        margin-top: 70px;
+    }
+
+    .profile-picture {
+        width: auto;
+    }
+
+    .profile-picture > img {
+        width: 300px;
+    }
+
+    #experience {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 80%;
+    }
+
+    #experience > section {
+        width: 100%;
+    }
+
+    .technologies h3 {
+        margin-top: -6px;
+    }
+
+    #projects h2 {
+        width: auto;
+        margin: 27px auto;
+    }
+
+    .project {
+        width: 45%;
+        margin: 0 0 20px 0;
+    }
+
+    #questions {
+        width: 80%;
+    }
+}

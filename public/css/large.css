@@ -1,0 +1,93 @@
+@media (min-width: 1200px) {
+    /* Styles */
+
+    a:hover {
+        text-decoration: solid underline var(--blue);
+        color: var(--blue);
+    }
+
+    .personal-info,
+    .social-media {
+        flex-basis: revert;
+    }
+
+    /* Index */
+
+    #home {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .main-page {
+        flex-direction: row-reverse;
+        width: 80%;
+        margin: 0 auto;
+    }
+
+    .presentation {
+        margin-top: 0;
+        width: auto;
+        height: 100vh;
+    }
+
+    .presentation > h3 {
+        margin-top: 40px;
+    }
+
+    .presentation > p,
+    .presentation > small {
+        margin-top: 7px;
+    }
+
+    .profile-picture,
+    .profile-picture > img {
+        margin-top: 0;
+    }
+
+    .profile-picture {
+        width: auto;
+    }
+
+    .technologies h3 {
+        margin-top: 0;
+        font-size: 1.3em;
+    }
+
+    #experience {
+        width: 80%;
+        justify-content: space-between;
+        margin-top: 0;
+    }
+
+    #projects {
+        margin-top: 90px;
+    }
+
+    .projects-section {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .project {
+        width: 30%;
+        border: 1px solid var(--grey);
+        border-radius: 5px;
+        padding: 0 20px 20px 20px;
+        margin-bottom: 20px;
+        text-wrap: balance;
+    }
+
+    #questions {
+        margin: 90px auto;
+    }
+
+    .question {
+        margin-top: 20px;
+    }
+
+    .answer {
+        padding: 0 30px;
+    }
+}

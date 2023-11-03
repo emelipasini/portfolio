@@ -1,0 +1,59 @@
+@media (min-width: 768px) {
+    /* Styles */
+
+    #contact {
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 80%;
+    }
+
+    .personal-info,
+    .social-media {
+        flex: 1;
+        flex-basis: 30%;
+        display: flex;
+        justify-content: center;
+    }
+
+    /* Index */
+
+    .profile-picture > img {
+        width: 35%;
+    }
+
+    #experience {
+        width: 64%;
+    }
+
+    #experience .date {
+        margin-left: 10px;
+        display: inline;
+    }
+
+    #experience ul {
+        margin-top: 0;
+    }
+
+    .technologies {
+        width: 80%;
+    }
+
+    #projects,
+    #questions {
+        margin-top: 40px;
+    }
+
+    #projects h2 {
+        width: 80%;
+        margin: 27px auto;
+    }
+
+    .project {
+        width: 80%;
+        margin: 0 auto 20px auto;
+    }
+
+    #questions {
+        width: 64%;
+    }
+}
