@@ -39,7 +39,8 @@ app.use((_req, res) => {
 });
 
 const PORT = process.env.PORT ?? 3000;
+const DOMAIN = process.env.HOSTNAME ?? "http://localhost";
 
 app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+    console.log(`Server running on ${DOMAIN}:${PORT}`);
 });
