@@ -4,7 +4,7 @@
     "description": "",
     "main": "app.js",
     "scripts": {
-        "build": "rm -rf ./build && tsc",
+        "build": "tsc",
         "start": "node build/src/app.js",
         "dev": "node --watch build/src/app.js",
         "check-types": "tsc --noEmit",

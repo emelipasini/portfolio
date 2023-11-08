@@ -5,7 +5,6 @@ import "dotenv/config";
 import { version } from "../package.json";
 
 import { corsMiddleware } from "./middlewares/cors.js";
-import { expensesRouter } from "./routes/expenses.js";
 
 const app = express();
 
@@ -16,8 +15,6 @@ app.use(corsMiddleware);
 app.set("view engine", "ejs");
 app.set("views", resolve("views"));
 app.use(express.static(resolve("public")));
-
-app.use("/api/expenses", expensesRouter);
 
 app.get("/version", (_req, res) => {
     const projectVersion = version;
@@ -39,7 +36,7 @@ app.use((_req, res) => {
 });
 
 const PORT = process.env.PORT ?? 3000;
-const DOMAIN = process.env.HOSTNAME ?? "http://localhost";
+const DOMAIN = process.env.DOMAIN ?? "http://localhost";
 
 app.listen(PORT, () => {
     console.log(`Server running on ${DOMAIN}:${PORT}`);
