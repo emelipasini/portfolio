@@ -65,6 +65,13 @@
     margin-top: 10px;
 }
 
+#experience .download {
+    display: flex;
+    gap: 5px;
+    font-style: italic;
+    margin-top: 5px;
+}
+
 #experience .more-info {
     font-style: italic;
     color: var(--blue);
