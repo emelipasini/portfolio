@@ -1,10 +1,14 @@
 @media (min-width: 992px) {
     /* Styles */
 
+    .main-header {
+        background-color: transparent;
+        backdrop-filter: blur(10px);
+    }
+
     .navigation {
         display: flex;
         justify-content: space-between;
-        padding: 10px 20px 5px 20px;
     }
 
     .menu-toggle {
@@ -13,6 +17,8 @@
 
     .internal-links {
         display: block;
+        margin-top: 5px;
+        margin-right: 5px;
     }
 
     .internal-links > a {
