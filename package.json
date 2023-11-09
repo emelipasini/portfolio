@@ -12,8 +12,8 @@
         "prepare": "husky install"
     },
     "engines": {
-        "npm": ">=9.5.1",
-        "node": ">=18.16.0"
+        "npm": "9.5.1",
+        "node": "18.16.0"
     },
     "keywords": [
         "typescript",

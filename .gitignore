@@ -36,7 +36,3 @@ node_modules/
 
 # development directory
 .development/
-
-# files and images for testing
-public/images/
-public/files/
