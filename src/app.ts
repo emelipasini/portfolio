@@ -25,6 +25,11 @@ app.get("/health", (_req, res) => {
     res.json({ status: "Ok" });
 });
 
+app.get(["/.well-known/security.txt", "/security.txt"], (_req, res) => {
+    res.setHeader("Content-Type", "text/plain; charset=utf-8");
+    res.sendFile(resolve("public", "files", "security.txt"));
+});
+
 app.get("/", (_req, res) => {
     res.setHeader("Content-Type", "text/html; charset=utf-8");
     res.render("index");
