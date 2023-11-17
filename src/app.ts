@@ -30,6 +30,16 @@ app.get(["/.well-known/security.txt", "/security.txt"], (_req, res) => {
     res.sendFile(resolve("public", "files", "security.txt"));
 });
 
+app.get("/robots.txt", (_req, res) => {
+    res.setHeader("Content-Type", "text/plain; charset=utf-8");
+    res.sendFile(resolve("public", "files", "robots.txt"));
+});
+
+app.get("/sitemap.xml", (_req, res) => {
+    res.setHeader("Content-Type", "text/xml; charset=utf-8");
+    res.sendFile(resolve("public", "files", "sitemap.xml"));
+});
+
 app.get("/", (_req, res) => {
     res.setHeader("Content-Type", "text/html; charset=utf-8");
     res.render("index");
