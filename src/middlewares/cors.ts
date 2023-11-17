@@ -1,7 +1,7 @@
 import { type NextFunction, type Request, type Response } from "express";
 
 const PORT = process.env.PORT ?? 3000;
-const DOMAIN = process.env.URL ?? "http://localhost";
+const DOMAIN = process.env.DOMAIN ?? "http://localhost";
 const URL = `${DOMAIN}:${PORT}`;
 
 const ACCEPTED_ORIGINS = [URL];
