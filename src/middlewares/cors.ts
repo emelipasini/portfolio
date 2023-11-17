@@ -12,6 +12,11 @@ export const corsMiddleware = (req: Request, res: Response, next: NextFunction):
     if (ACCEPTED_ORIGINS.includes(origin)) {
         res.setHeader("Access-Control-Allow-Origin", origin);
         res.setHeader("Access-Control-Allow-Methods", "GET");
+        res.setHeader("Strict-Transport-Security", "max-age=63072000; includeSubDomains; preload");
+        res.setHeader("Content-Security-Policy", "default-src https:");
+        res.setHeader("X-Content-Type-Options", "nosniff");
+        res.setHeader("X-Frame-Options", "DENY");
+        res.setHeader("Referrer-Policy", "no-referrer");
     }
     next();
 };
