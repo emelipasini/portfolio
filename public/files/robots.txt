@@ -5,4 +5,4 @@ Disallow: /health
 Disallow: /security.txt
 Disallow: /.well-known/security.txt
 
-Sitemap: https://emelipasini.2.ie-1.fl0.io/sitemap.xml
+Sitemap: https://emelipasini.com/sitemap.xml
