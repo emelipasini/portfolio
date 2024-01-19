@@ -2,8 +2,9 @@ import { type NextFunction, type Request, type Response } from "express";
 
 const PORT = process.env.PORT ?? 3000;
 const DOMAIN = process.env.DOMAIN ?? "http://localhost";
-const URL = `${DOMAIN}:${PORT}`;
+const ENVIRONMENT = process.env.ENVIRONMENT ?? "development";
 
+const URL = `${DOMAIN}:${PORT}`;
 const ACCEPTED_ORIGINS = [URL];
 
 export const corsMiddleware = (req: Request, res: Response, next: NextFunction): void => {
@@ -18,5 +19,10 @@ export const corsMiddleware = (req: Request, res: Response, next: NextFunction):
         res.setHeader("X-Frame-Options", "DENY");
         res.setHeader("Referrer-Policy", "no-referrer");
     }
+
+    if (ENVIRONMENT === "development") {
+        res.header("Content-Security-Policy", "img-src 'self'");
+    }
+
     next();
 };
