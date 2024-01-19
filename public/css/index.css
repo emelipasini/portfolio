@@ -18,7 +18,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-wrap: balance;
     margin-top: 30px;
 }
 
@@ -43,7 +42,6 @@
 
 #experience {
     width: 80%;
-    text-wrap: balance;
     margin: 0 auto;
     padding-top: 50px;
 }
@@ -103,7 +101,6 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    text-wrap: balance;
     margin: 30px auto;
     padding-top: 50px;
 }
@@ -124,7 +121,6 @@
     border-radius: 5px;
     padding: 0 20px 20px 20px;
     margin-bottom: 20px;
-    text-wrap: balance;
 }
 
 .question {
