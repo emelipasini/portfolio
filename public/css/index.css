@@ -43,7 +43,7 @@
 #experience {
     width: 80%;
     margin: 0 auto;
-    padding-top: 50px;
+    padding-top: 30px;
 }
 
 #experience p {
@@ -101,8 +101,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 30px auto;
-    padding-top: 50px;
+    margin: 0 auto;
+    padding-top: 30px;
 }
 
 #questions {
