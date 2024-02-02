@@ -147,3 +147,9 @@ a {
     padding: 10px;
     font-weight: 600;
 }
+
+@media (prefers-reduced-motion) {
+    html {
+        scroll-behavior: auto;
+    }
+}
