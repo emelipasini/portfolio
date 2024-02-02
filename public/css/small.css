@@ -53,7 +53,8 @@
         margin: 0 auto 20px auto;
     }
 
-    #questions {
+    #questions,
+    #about {
         width: 64%;
     }
 }

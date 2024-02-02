@@ -60,7 +60,7 @@
     }
 
     #projects {
-        margin-top: 90px;
+        margin-top: 40px;
     }
 
     .projects-section {
@@ -76,18 +76,9 @@
         border-radius: 5px;
         padding: 0 20px 20px 20px;
         margin-bottom: 20px;
-        text-wrap: balance;
-    }
-
-    #questions {
-        margin: 90px auto;
-    }
-
-    .question {
-        margin-top: 20px;
     }
 
     .answer {
-        padding: 0 30px;
+        padding: 0 40px;
     }
 }
