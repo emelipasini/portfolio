@@ -20,18 +20,18 @@
 
     .main-page {
         flex-direction: row-reverse;
-        width: 80%;
+        width: 85%;
         margin: 0 auto;
     }
 
     .presentation {
         margin-top: 0;
-        width: auto;
+        width: 85%;
         height: 100vh;
     }
 
-    .presentation > h3 {
-        margin-top: 40px;
+    .presentation > * {
+        width: 85%;
     }
 
     .presentation > p,
