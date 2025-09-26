@@ -63,12 +63,8 @@
     margin-top: 10px;
 }
 
-#experience .download {
-    display: flex;
-    gap: 5px;
-    font-style: italic;
-    margin-top: 5px;
-    font-size: 0.8em;
+#experience .description {
+    color: var(--green);
 }
 
 #experience .more-info {
