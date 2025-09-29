@@ -101,6 +101,11 @@
     padding-top: 30px;
 }
 
+#questions strong {
+    color: var(--yellow);
+    font-weight: 500;
+}
+
 .projects-section {
     display: flex;
     flex-direction: row;
