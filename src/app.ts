@@ -6,6 +6,8 @@ import { version } from "../package.json";
 
 import { corsMiddleware } from "./middlewares/cors.js";
 
+import apiRouter from "../api/index.js";
+
 const app = express();
 
 app.disable("x-powered-by");
@@ -14,7 +16,9 @@ app.use(corsMiddleware);
 
 app.set("view engine", "ejs");
 app.set("views", resolve("views"));
+
 app.use(express.static(resolve("public")));
+app.use("/api", apiRouter);
 
 app.get("/version", (_req, res) => {
     const projectVersion = version;
@@ -50,9 +54,4 @@ app.use((_req, res) => {
     res.status(404).render("not-found");
 });
 
-const PORT = process.env.PORT ?? 3000;
-const DOMAIN = process.env.DOMAIN ?? "http://localhost";
-
-app.listen(PORT, () => {
-    console.log(`Server running on ${DOMAIN}:${PORT}`);
-});
+export default app;
