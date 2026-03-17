@@ -1,0 +1,22 @@
+{
+    "name": "Emeli Pasini",
+    "title": "Full Stack Developer with Backend focus",
+    "bio": "With two years in software development and one year in education, I bridge the gap between technical execution and clear communication. I’m passionate about clean code and sustainable architecture. I thrive in collaborative environments, believing that the best solutions are built through teamwork and shared ideas.",
+    "stack": {
+        "languages": ["JavaScript", "TypeScript", "Python", "C#"],
+        "frameworks": ["Node.js", "Express", "React", "Angular", "ASP.NET"],
+        "databases": ["PostgreSQL", "Oracle", "MongoDB"],
+        "testing": ["Jest", "Test-Driven Development (TDD)", "Clean Code Principles"],
+        "tools": ["Git", "Swagger (API-Dokumentation)", "Shell", "Vim", "Agile (Scrum)"]
+    },
+    "languages": {
+        "spanish": "native",
+        "english": "fluent",
+        "german": "B1"
+    },
+    "socialLinks": {
+        "github": "https://github.com/emelipasini",
+        "linkedin": "https://www.linkedin.com/in/emelipasini/",
+        "email": "emelipasini@gmail.com"
+    }
+}
