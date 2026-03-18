@@ -6,7 +6,7 @@ import { version } from "../package.json";
 
 import { corsMiddleware } from "./middlewares/cors.js";
 
-import apiRouter from "../api/index.js";
+import apiRouter from "./api/index.js";
 
 const app = express();
 

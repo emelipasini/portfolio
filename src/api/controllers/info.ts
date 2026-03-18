@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
 
-import profile from "../data/profile.json";
-import projects from "../data/projects.json";
+import profile from "../../data/profile.json";
+import projects from "../../data/projects.json";
 
 export const InfoController = {
     profile: (_req: Request, res: Response): void => {
