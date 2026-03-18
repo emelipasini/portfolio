@@ -20,4 +20,14 @@ describe("API Information Endpoints", () => {
         expect(response.status).toBe(404);
         expect(body.message).toBe("Not found");
     });
+
+    it("should return list of projects with status 200", async () => {
+        const response = await request(app).get("/api/projects");
+        const body = response.body as { status: string; data: unknown[] };
+
+        expect(response.status).toBe(200);
+        expect(body).toHaveProperty("status", "success");
+        expect(body.data.length).toBe(7);
+        expect(body.data[0]).toHaveProperty("description");
+    });
 });
