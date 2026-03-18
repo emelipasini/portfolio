@@ -1,0 +1,55 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Portfolio API",
+        "description": "API designed to manage and display technical projects. This project serves as a demonstration of modern backend architecture, clean code principles, and professional documentation standards.",
+        "version": "2.0.1"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000/api",
+            "description": "Local development server"
+        },
+        {
+            "url": "https://emelipasini.com/api",
+            "description": "Deployment server"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Personal Info"
+        }
+    ],
+    "paths": {
+        "/profile": {
+            "get": {
+                "tags": ["Personal Info"],
+                "summary": "Profile information",
+                "description": "Retrieve detailed information about the profile, including name, description, and social media links.",
+                "responses": {
+                    "200": {
+                        "description": "Successful response with profile information"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/projects": {
+            "get": {
+                "tags": ["Personal Info"],
+                "summary": "List of projects",
+                "description": "Retrieve a list of all projects with their details.",
+                "responses": {
+                    "200": {
+                        "description": "Successful response with a list of projects"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        }
+    }
+}
