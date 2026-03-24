@@ -46,7 +46,7 @@ export class InfoController {
 
     profile(_req: Request, res: Response): void {
         res.json({
-            status: "success",
+            status: "Success",
             data: profile,
         });
     }
@@ -57,13 +57,13 @@ export class InfoController {
         const query = typeof req.query.q === "string" ? req.query.q.toLowerCase().trim() : "";
 
         if (query === "") {
-            return res.json({ status: "success", data: projects });
+            return res.json({ status: "Success", data: projects });
         }
 
         const resultIds = this.searchIndex.get(query) ?? new Set<string>();
 
         if (resultIds.size === 0) {
-            return res.json({ status: "success", data: [] });
+            return res.status(404).json({ status: "Not found", data: [] });
         }
 
         const results = Array.from(resultIds)
@@ -71,7 +71,7 @@ export class InfoController {
             .filter(Boolean);
 
         return res.json({
-            status: "success",
+            status: "Success",
             count: results.length,
             data: results,
         });

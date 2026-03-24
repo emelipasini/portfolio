@@ -11,7 +11,7 @@ describe("API Information Endpoints", () => {
         const body = response.body as { status: string; data: { name: string } };
 
         expect(response.status).toBe(200);
-        expect(body).toHaveProperty("status", "success");
+        expect(body).toHaveProperty("status", "Success");
         expect(body.data).toHaveProperty("name");
     });
 
@@ -28,8 +28,17 @@ describe("API Information Endpoints", () => {
         const body = response.body as { status: string; data: Project[] };
 
         expect(response.status).toBe(200);
-        expect(body).toHaveProperty("status", "success");
+        expect(body).toHaveProperty("status", "Success");
         expect(body.data[0]).toHaveProperty("description");
+    });
+
+    it("should return status 404 when searching for a non-existent term", async () => {
+        const response = await request(app).get("/api/projects?q=Golang");
+        const body = response.body as { status: string; data: Project[] };
+
+        expect(response.status).toBe(404);
+        expect(body).toHaveProperty("status", "Not found");
+        expect(body.data).toEqual([]);
     });
 
     it("should return search results for a query matching technologies", async () => {
