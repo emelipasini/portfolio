@@ -18,6 +18,9 @@
     "tags": [
         {
             "name": "Personal Info"
+        },
+        {
+            "name": "Projects"
         }
     ],
     "paths": {
@@ -38,12 +41,57 @@
         },
         "/projects": {
             "get": {
-                "tags": ["Personal Info"],
-                "summary": "List of projects",
-                "description": "Retrieve a list of all projects with their details.",
+                "tags": ["Projects"],
+                "summary": "List of projects + Fuzzy Search",
+                "description": "Retrieve a list of all projects with their details. Fuzzy Search by name, description, technologies, type and status.",
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "description": "Search term (e.g., 'CABA', 'Refactoring', 'TypeScript', 'Professional', 'Completed')",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "TypeScript"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Successful response with a list of projects"
+                    },
+                    "404": {
+                        "description": "No projects found matching the search criteria"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/projects/{id}": {
+            "get": {
+                "tags": ["Projects"],
+                "summary": "Project details",
+                "description": "Retrieve detailed information about a specific project by its ID.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the project to retrieve",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response with project details"
+                    },
+                    "404": {
+                        "description": "Project not found with the specified ID"
                     },
                     "500": {
                         "description": "Internal server error"

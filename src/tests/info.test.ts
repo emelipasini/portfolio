@@ -90,4 +90,22 @@ describe("API Information Endpoints", () => {
         expect(response.status).toBe(200);
         expect(body.data[0].status).toBe("In Progress");
     });
+
+    it("should return project details by ID", async () => {
+        const response = await request(app).get("/api/projects/3");
+        const body = response.body as { status: string; data: Project };
+
+        expect(response.status).toBe(200);
+        expect(body).toHaveProperty("status", "Success");
+        expect(body.data).toHaveProperty("id", 3);
+    });
+
+    it("should return 404 when searching for a non-existent project ID", async () => {
+        const response = await request(app).get("/api/projects/false-id");
+        const body = response.body as { status: string; data: Record<string, never> };
+
+        expect(response.status).toBe(404);
+        expect(body).toHaveProperty("status", "Not found");
+        expect(body.data).toEqual({});
+    });
 });

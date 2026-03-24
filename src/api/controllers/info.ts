@@ -72,8 +72,21 @@ export class InfoController {
 
         return res.json({
             status: "Success",
-            count: results.length,
             data: results,
+        });
+    }
+
+    getProjectById(req: Request, res: Response): Response {
+        const id = req.params.id;
+        const project = this.dataIndex.get(id);
+
+        if (project === undefined) {
+            return res.status(404).json({ status: "Not found", data: {} });
+        }
+
+        return res.json({
+            status: "Success",
+            data: project,
         });
     }
 }
