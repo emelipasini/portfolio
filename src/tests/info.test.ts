@@ -82,13 +82,20 @@ describe("API Information Endpoints", () => {
         expect(body.data[0].type).toBe("Personal");
     });
 
-    // TODO: implement search by multiple words
-    it.skip("should return search results for a query matching status", async () => {
+    it("should return search results for a query matching status", async () => {
         const response = await request(app).get("/api/projects?q=in progress");
         const body = response.body as { status: string; data: Project[] };
 
         expect(response.status).toBe(200);
         expect(body.data[0].status).toBe("In Progress");
+    });
+
+    it("should return search results for a query with multiple words", async () => {
+        const response = await request(app).get("/api/projects?q=improved design patterns");
+        const body = response.body as { status: string; data: Project[] };
+
+        expect(response.status).toBe(200);
+        expect(body.data[0].description).toContain("improved design patterns");
     });
 
     it("should return project details by ID", async () => {

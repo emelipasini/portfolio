@@ -60,7 +60,23 @@ export class InfoController {
             return res.json({ status: "Success", data: projects });
         }
 
-        const resultIds = this.searchIndex.get(query) ?? new Set<string>();
+        const searchTerms = query.split(/\s+/);
+
+        let resultIds = new Set<string>();
+
+        searchTerms.forEach((term) => {
+            const idsForTerm = this.searchIndex.get(term) ?? new Set<string>();
+
+            if (resultIds.size === 0) {
+                resultIds = new Set(idsForTerm);
+            } else {
+                for (const id of resultIds) {
+                    if (!idsForTerm.has(id)) {
+                        resultIds.delete(id);
+                    }
+                }
+            }
+        });
 
         if (resultIds.size === 0) {
             return res.status(404).json({ status: "Not found", data: [] });
