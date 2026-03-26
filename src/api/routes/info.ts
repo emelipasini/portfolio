@@ -12,11 +12,4 @@ infoRouter.get("/info", (req, res) => {
     infoController.getInfo(req, res);
 });
 
-infoRouter.get("/projects", (req, res) => {
-    return infoController.searchProjects(req, res);
-});
-infoRouter.get("/projects/:id", (req, res) => {
-    return infoController.getProjectById(req, res);
-});
-
 export default infoRouter;
