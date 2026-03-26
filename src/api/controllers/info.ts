@@ -14,6 +14,23 @@ export class InfoController {
         this.buildIndex();
     }
 
+    private getSimilarity(s1: string, s2: string): number {
+        const track: number[][] = Array.from<unknown, number[]>({ length: s2.length + 1 }, () =>
+            new Array<number>(s1.length + 1).fill(0)
+        );
+
+        for (let i = 0; i <= s1.length; i += 1) track[0][i] = i;
+        for (let j = 0; j <= s2.length; j += 1) track[j][0] = j;
+
+        for (let j = 1; j <= s2.length; j += 1) {
+            for (let i = 1; i <= s1.length; i += 1) {
+                const indicator = s1[i - 1] === s2[j - 1] ? 0 : 1;
+                track[j][i] = Math.min(track[j][i - 1] + 1, track[j - 1][i] + 1, track[j - 1][i - 1] + indicator);
+            }
+        }
+        return track[s2.length][s1.length];
+    }
+
     buildIndex(): void {
         if (this.isIndexed) return;
 
@@ -31,7 +48,7 @@ export class InfoController {
             ]);
 
             terms.forEach((term) => {
-                const cleanTerm = term.trim().replace(/[.,!?;:]/g, "");
+                const cleanTerm = term.trim().replace(/(?<!\d)\.(?!\w)|[!?;:]/g, "");
                 if (cleanTerm === "") return;
 
                 if (!this.searchIndex.has(cleanTerm)) {
@@ -65,15 +82,32 @@ export class InfoController {
         let resultIds = new Set<string>();
 
         searchTerms.forEach((term) => {
-            const idsForTerm = this.searchIndex.get(term) ?? new Set<string>();
+            let idsForTerm = this.searchIndex.get(term);
+
+            if (idsForTerm === undefined) {
+                let bestMatch = "";
+                let minDistance = 2;
+
+                for (const key of this.searchIndex.keys()) {
+                    const distance = this.getSimilarity(term, key);
+                    if (distance <= minDistance) {
+                        minDistance = distance;
+                        bestMatch = key;
+                    }
+                }
+
+                if (bestMatch !== "") {
+                    idsForTerm = this.searchIndex.get(bestMatch);
+                }
+            }
+
+            const currentTermIds = idsForTerm ?? new Set<string>();
 
             if (resultIds.size === 0) {
-                resultIds = new Set(idsForTerm);
+                resultIds = new Set(currentTermIds);
             } else {
                 for (const id of resultIds) {
-                    if (!idsForTerm.has(id)) {
-                        resultIds.delete(id);
-                    }
+                    if (!currentTermIds.has(id)) resultIds.delete(id);
                 }
             }
         });

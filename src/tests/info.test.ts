@@ -32,6 +32,26 @@ describe("API Information Endpoints", () => {
         expect(body.data[0]).toHaveProperty("description");
     });
 
+    it("should return project details by ID", async () => {
+        const response = await request(app).get("/api/projects/3");
+        const body = response.body as { status: string; data: Project };
+
+        expect(response.status).toBe(200);
+        expect(body).toHaveProperty("status", "Success");
+        expect(body.data).toHaveProperty("id", 3);
+    });
+
+    it("should return 404 when searching for a non-existent project ID", async () => {
+        const response = await request(app).get("/api/projects/false-id");
+        const body = response.body as { status: string; data: Record<string, never> };
+
+        expect(response.status).toBe(404);
+        expect(body).toHaveProperty("status", "Not found");
+        expect(body.data).toEqual({});
+    });
+});
+
+describe("API Search Functionality", () => {
     it("should return status 404 when searching for a non-existent term", async () => {
         const response = await request(app).get("/api/projects?q=Golang");
         const body = response.body as { status: string; data: Project[] };
@@ -49,8 +69,7 @@ describe("API Information Endpoints", () => {
         expect(body.data[0].technologies).toContain("TypeScript");
     });
 
-    // TODO: not working, the set has "node.js"
-    it.skip("should return search results for a query matching technologies with dots", async () => {
+    it("should return search results for a query matching technologies with dots", async () => {
         const response = await request(app).get("/api/projects?q=node.js");
         const body = response.body as { status: string; data: Project[] };
 
@@ -98,21 +117,19 @@ describe("API Information Endpoints", () => {
         expect(body.data[0].description).toContain("improved design patterns");
     });
 
-    it("should return project details by ID", async () => {
-        const response = await request(app).get("/api/projects/3");
-        const body = response.body as { status: string; data: Project };
+    it("should return search results for a query with typos", async () => {
+        const response = await request(app).get("/api/projects?q=improed desgn");
+        const body = response.body as { status: string; data: Project[] };
 
         expect(response.status).toBe(200);
-        expect(body).toHaveProperty("status", "Success");
-        expect(body.data).toHaveProperty("id", 3);
+        expect(body.data[0].description).toContain("improved design patterns");
     });
 
-    it("should return 404 when searching for a non-existent project ID", async () => {
-        const response = await request(app).get("/api/projects/false-id");
-        const body = response.body as { status: string; data: Record<string, never> };
+    it("should return search results for a query with partial word", async () => {
+        const response = await request(app).get("/api/projects?q=impro");
+        const body = response.body as { status: string; data: Project[] };
 
-        expect(response.status).toBe(404);
-        expect(body).toHaveProperty("status", "Not found");
-        expect(body.data).toEqual({});
+        expect(response.status).toBe(200);
+        expect(body.data[0].description).toContain("improved design patterns");
     });
 });
