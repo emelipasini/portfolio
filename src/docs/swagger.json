@@ -17,7 +17,7 @@
     ],
     "tags": [
         {
-            "name": "Personal Info"
+            "name": "Information"
         },
         {
             "name": "Projects"
@@ -26,9 +26,24 @@
     "paths": {
         "/profile": {
             "get": {
-                "tags": ["Personal Info"],
-                "summary": "Profile information",
+                "tags": ["Information"],
+                "summary": "My profile information",
                 "description": "Retrieve detailed information about the profile, including name, description, and social media links.",
+                "responses": {
+                    "200": {
+                        "description": "Successful response with profile information"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/info": {
+            "get": {
+                "tags": ["Information"],
+                "summary": "Portfolio information",
+                "description": "Retrieve detailed information about this API and the website.",
                 "responses": {
                     "200": {
                         "description": "Successful response with profile information"

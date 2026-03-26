@@ -6,7 +6,10 @@ const infoRouter = Router();
 const infoController = new InfoController();
 
 infoRouter.get("/profile", (req, res) => {
-    infoController.profile(req, res);
+    infoController.getProfile(req, res);
+});
+infoRouter.get("/info", (req, res) => {
+    infoController.getInfo(req, res);
 });
 
 infoRouter.get("/projects", (req, res) => {

@@ -1,6 +1,7 @@
 import type { Request, Response } from "express";
 
 import profile from "../../data/profile.json";
+import pageInfo from "../../data/page-info.json";
 import { projects } from "../../data/projects.json";
 
 import type { Project } from "../models/project.js";
@@ -59,13 +60,6 @@ export class InfoController {
         });
 
         this.isIndexed = true;
-    }
-
-    profile(_req: Request, res: Response): void {
-        res.json({
-            status: "Success",
-            data: profile,
-        });
     }
 
     searchProjects(req: Request, res: Response): Response {
@@ -137,6 +131,20 @@ export class InfoController {
         return res.json({
             status: "Success",
             data: project,
+        });
+    }
+
+    getProfile(_req: Request, res: Response): void {
+        res.json({
+            status: "Success",
+            data: profile,
+        });
+    }
+
+    getInfo(_req: Request, res: Response): void {
+        res.json({
+            status: "Success",
+            data: pageInfo,
         });
     }
 }

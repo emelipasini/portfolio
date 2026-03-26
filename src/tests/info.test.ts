@@ -49,6 +49,15 @@ describe("API Information Endpoints", () => {
         expect(body).toHaveProperty("status", "Not found");
         expect(body.data).toEqual({});
     });
+
+    it("should return website information with status 200", async () => {
+        const response = await request(app).get("/api/info");
+        const body = response.body as { status: string; data: { project_name: string } };
+
+        expect(response.status).toBe(200);
+        expect(body).toHaveProperty("status", "Success");
+        expect(body.data).toHaveProperty("project_name", "Professional Portfolio API");
+    });
 });
 
 describe("API Search Functionality", () => {
