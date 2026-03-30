@@ -1,9 +1,9 @@
 import { describe, it, expect } from "vitest";
 import request from "supertest";
 
-import type { Project } from "../../src/api/models/project.js";
+import type { Project } from "../../../src/api/models/project.js";
 
-import app from "../../src/app.js";
+import app from "../../../src/app.js";
 
 describe("Project Endpoints", () => {
     it("should return list of projects with status 200", async () => {
