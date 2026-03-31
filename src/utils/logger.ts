@@ -1,0 +1,23 @@
+import pino from "pino";
+import path from "path";
+
+const logDir = path.join(process.cwd(), "logs");
+const logFilePath = path.join(logDir, "app.log");
+
+const isProduction = process.env.ENVIRONMENT === "production";
+
+// prettier-ignore
+const logger = pino({
+    level: isProduction ? "info" : "debug",
+    transport: !isProduction
+        ? {
+            target: "pino/file",
+            options: {
+                destination: logFilePath,
+                mkdir: true,
+            },
+        }
+        : undefined,
+});
+
+export default logger;
