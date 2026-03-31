@@ -1,4 +1,4 @@
-import type { Request, Response } from "express";
+import type { Request, Response, NextFunction } from "express";
 
 import profile from "../../data/profile.json";
 import pageInfo from "../../data/page-info.json";
@@ -23,8 +23,7 @@ export class InfoController {
         });
     }
 
-    // TODO: Handle errors
-    sendMessage = async (req: Request, res: Response): Promise<Response> => {
+    sendMessage = async (req: Request, res: Response, _next: NextFunction): Promise<Response> => {
         const webhookUrl = this.DISCORD_WEBHOOK_URL;
 
         const result = ContactSchema.safeParse(req.body);
