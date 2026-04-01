@@ -1,7 +1,7 @@
-import type { Request, Response } from "express";
-
 import { projects } from "../../data/projects.json";
+
 import type { Project } from "../models/project.js";
+import type { Request, Response } from "express";
 
 export class ProjectController {
     searchIndex = new Map<string, Set<string>>();
