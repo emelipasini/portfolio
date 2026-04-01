@@ -1,9 +1,8 @@
-import type { Request, Response, NextFunction } from "express";
-
-import profile from "../../data/profile.json";
 import pageInfo from "../../data/page-info.json";
-
+import profile from "../../data/profile.json";
 import ContactSchema from "../../schemas/contact";
+
+import type { Request, Response, NextFunction } from "express";
 
 export class InfoController {
     private readonly DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL;

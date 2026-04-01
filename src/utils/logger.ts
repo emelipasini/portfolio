@@ -1,5 +1,6 @@
-import pino from "pino";
 import path from "path";
+
+import pino from "pino";
 
 const logDir = path.join(process.cwd(), "logs");
 const logFilePath = path.join(logDir, "app.log");

@@ -1,8 +1,7 @@
-import type { Request, Response, NextFunction } from "express";
+import logger from "../utils/logger";
 
 import type { AppError } from "../api/models/appError";
-
-import logger from "../utils/logger";
+import type { Request, Response, NextFunction } from "express";
 
 export const globalErrorHandler = (err: AppError, req: Request, res: Response, _next: NextFunction): void => {
     const status = err.status ?? 500;
