@@ -3,7 +3,7 @@
     "info": {
         "title": "Portfolio API",
         "description": "API designed to manage and display technical projects. This project serves as a demonstration of modern backend architecture, clean code principles, and professional documentation standards.",
-        "version": "2.0.1"
+        "version": "3.0.0"
     },
     "servers": [
         {
