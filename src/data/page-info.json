@@ -1,0 +1,40 @@
+{
+    "project_name": "Professional Portfolio API",
+    "developer": "Emeli Pasini",
+    "status": "Operational",
+    "version": "/version",
+    "stack_details": {
+        "runtime": "Node.js",
+        "language": "TypeScript",
+        "framework": "Express.js",
+        "testing_suite": "Vitest",
+        "logging": "Pino",
+        "validation_library": "Zod"
+    },
+    "engineering_standards": {
+        "linting": "ESLint",
+        "formatting": "Prettier",
+        "documentation": "Swagger (OpenAPI)",
+        "git_hooks": {
+            "tool": "Husky",
+            "automation": [
+                "Pre-commit unit testing",
+                "Linting verification",
+                "Conventional Commits enforcement via Commitlint"
+            ]
+        },
+        "architecture": "RESTful API with Clean Code principles"
+    },
+    "key_features": [
+        "Type-safe development and schema validation via Zod",
+        "High-performance structured logging with Pino",
+        "Interactive API documentation through Swagger UI",
+        "Automated CI/CD-ready workflow",
+        "Standardized commit history for better traceability",
+        "High test coverage to ensure regression-free deployments"
+    ],
+    "links": {
+        "repository": "https://github.com/emelipasini/portfolio",
+        "documentation": "/api/docs"
+    }
+}

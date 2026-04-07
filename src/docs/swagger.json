@@ -1,0 +1,164 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Portfolio API",
+        "description": "API designed to manage and display technical projects. This project serves as a demonstration of modern backend architecture, clean code principles, and professional documentation standards.",
+        "version": "2.0.1"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:3000/api",
+            "description": "Local development server"
+        },
+        {
+            "url": "https://emelipasini.com/api",
+            "description": "Deployment server"
+        }
+    ],
+    "tags": [
+        {
+            "name": "Information"
+        },
+        {
+            "name": "Projects"
+        }
+    ],
+    "paths": {
+        "/profile": {
+            "get": {
+                "tags": ["Information"],
+                "summary": "My profile information",
+                "description": "Retrieve detailed information about the profile, including name, description, and social media links.",
+                "responses": {
+                    "200": {
+                        "description": "Successful response with profile information"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/info": {
+            "get": {
+                "tags": ["Information"],
+                "summary": "Portfolio information",
+                "description": "Retrieve detailed information about this API and the website.",
+                "responses": {
+                    "200": {
+                        "description": "Successful response with profile information"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/contact": {
+            "post": {
+                "tags": ["Information"],
+                "summary": "Send me a message",
+                "description": "Send a message through the contact form. The message will be forwarded to a Discord channel via webhook.",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "description": "Name of the sender",
+                                        "example": "Jane Doe"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "description": "Email address of the sender so I can reply",
+                                        "example": "jane.doe@email.com"
+                                    },
+                                    "message": {
+                                        "type": "string",
+                                        "description": "The message content",
+                                        "example": "Hello, I would like to get in touch with you."
+                                    }
+                                },
+                                "required": ["name", "email", "message"]
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Message sent successfully"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/projects": {
+            "get": {
+                "tags": ["Projects"],
+                "summary": "List of projects + Fuzzy Search",
+                "description": "Retrieve a list of all projects with their details. Fuzzy Search by name, description, technologies, type and status.",
+                "parameters": [
+                    {
+                        "name": "q",
+                        "in": "query",
+                        "description": "Search term (e.g., 'CABA', 'Refactoring', 'TypeScript', 'Professional', 'Completed')",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "TypeScript"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response with a list of projects"
+                    },
+                    "404": {
+                        "description": "No projects found matching the search criteria"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        },
+        "/projects/{id}": {
+            "get": {
+                "tags": ["Projects"],
+                "summary": "Project details",
+                "description": "Retrieve detailed information about a specific project by its ID.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ID of the project to retrieve",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful response with project details"
+                    },
+                    "404": {
+                        "description": "Project not found with the specified ID"
+                    },
+                    "500": {
+                        "description": "Internal server error"
+                    }
+                }
+            }
+        }
+    }
+}

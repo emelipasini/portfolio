@@ -9,9 +9,6 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 # Compiled binary addons (https://nodejs.org/api/addons.html)
 build/
 
-# Data files
-src/data/
-
 # Dependency directories
 node_modules/
 
@@ -36,3 +33,6 @@ node_modules/
 
 # development directory
 .development/
+
+# test coverage
+coverage
