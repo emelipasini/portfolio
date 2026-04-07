@@ -5,4 +5,11 @@ Disallow: /health
 Disallow: /security.txt
 Disallow: /.well-known/security.txt
 
+Disallow: /api/profile
+Disallow: /api/info
+Disallow: /api/contact
+Disallow: /api/projects
+
+Allow: /api/docs
+
 Sitemap: https://emelipasini.com/sitemap.xml

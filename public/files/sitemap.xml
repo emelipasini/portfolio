@@ -2,6 +2,10 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
         <loc>https://emelipasini.com/</loc>
-            <lastmod>2026-03-13T11:02:24.370Z</lastmod>
+        <lastmod>2026-04-07T12:53:24.370Z</lastmod>
+    </url>
+    <url>
+        <loc>https://emelipasini.com/api/docs</loc>
+        <lastmod>2026-04-07T12:53:24.370Z</lastmod>
     </url>
 </urlset>
