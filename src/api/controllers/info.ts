@@ -1,12 +1,15 @@
 import pageInfo from "../../data/page-info.json";
 import profile from "../../data/profile.json";
 import ContactSchema from "../../schemas/contact";
+import logger from "../../utils/logger";
 
 import type { Request, Response, NextFunction } from "express";
 
 export class InfoController {
-    private readonly DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL;
-    private readonly ENVIRONMENT = process.env.ENVIRONMENT;
+    constructor(
+        private readonly webhookUrl = process.env.DISCORD_WEBHOOK_URL,
+        private readonly env = process.env.ENVIRONMENT
+    ) {}
 
     getProfile(_req: Request, res: Response): void {
         res.json({
@@ -23,11 +26,10 @@ export class InfoController {
     }
 
     sendMessage = async (req: Request, res: Response, _next: NextFunction): Promise<Response> => {
-        const webhookUrl = this.DISCORD_WEBHOOK_URL;
-
         const result = ContactSchema.safeParse(req.body);
 
         if (!result.success) {
+            logger.warn({ issues: result.error.format() }, "Form validation failed");
             return res.status(400).json({
                 status: "Bad Request",
                 ...result.error.format(),
@@ -36,18 +38,11 @@ export class InfoController {
 
         const { name, email, message } = result.data;
 
-        if (name.length === 0 || email.length === 0 || message.length === 0) {
-            return res.status(400).json({
-                status: "Bad Request",
-                data: "Missing required fields",
-            });
-        }
-
-        if (webhookUrl === undefined) {
+        if (this.webhookUrl === undefined) {
             throw new Error("WEBHOOK_URL is not defined in environment variables");
         }
 
-        await fetch(webhookUrl, {
+        await fetch(this.webhookUrl, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -56,12 +51,13 @@ export class InfoController {
                     {
                         title: `From: ${name} (${email})`,
                         description: message,
-                        color: this.ENVIRONMENT === "development" ? 3066993 : 10656766,
+                        color: this.env === "development" ? 3066993 : 10656766,
                     },
                 ],
             }),
         });
 
+        logger.info("Message successfully sent to Discord");
         return res.json({
             status: "Success",
             data: "Message sent successfully",

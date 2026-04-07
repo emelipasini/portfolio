@@ -1,18 +1,21 @@
 import { projects } from "../../data/projects.json";
+import logger from "../../utils/logger";
 
 import type { Project } from "../models/project.js";
 import type { Request, Response } from "express";
 
 export class ProjectController {
-    searchIndex = new Map<string, Set<string>>();
-    dataIndex = new Map<string, Project>();
-    isIndexed = false;
+    private readonly searchIndex = new Map<string, Set<string>>();
+    private readonly dataIndex = new Map<string, Project>();
+    private isIndexed = false;
 
     constructor() {
         this.buildIndex();
     }
 
     private getSimilarity(s1: string, s2: string): number {
+        if (Math.abs(s1.length - s2.length) > 2) return 3;
+
         const track: number[][] = Array.from<unknown, number[]>({ length: s2.length + 1 }, () =>
             new Array<number>(s1.length + 1).fill(0)
         );
@@ -29,7 +32,7 @@ export class ProjectController {
         return track[s2.length][s1.length];
     }
 
-    buildIndex(): void {
+    private buildIndex(): void {
         if (this.isIndexed) return;
 
         (projects as Project[]).forEach((project: Project) => {
@@ -59,9 +62,7 @@ export class ProjectController {
         this.isIndexed = true;
     }
 
-    searchProjects(req: Request, res: Response): Response {
-        this.buildIndex();
-
+    public searchProjects(req: Request, res: Response): Response {
         const query = typeof req.query.q === "string" ? req.query.q.toLowerCase().trim() : "";
 
         if (query === "") {
@@ -69,7 +70,6 @@ export class ProjectController {
         }
 
         const searchTerms = query.split(/\s+/);
-
         let resultIds = new Set<string>();
 
         searchTerms.forEach((term) => {
@@ -104,6 +104,7 @@ export class ProjectController {
         });
 
         if (resultIds.size === 0) {
+            logger.info({ query }, "Search of projectsreturned no results");
             return res.status(404).json({ status: "Not found", data: [] });
         }
 
@@ -117,7 +118,7 @@ export class ProjectController {
         });
     }
 
-    getProjectById(req: Request, res: Response): Response {
+    public getProjectById(req: Request, res: Response): Response {
         const id = req.params.id;
         const project = this.dataIndex.get(id);
 
