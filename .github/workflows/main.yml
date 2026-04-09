@@ -23,6 +23,8 @@ jobs:
               run: npm run lint
 
             - name: Run Tests
+              env:
+                  DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
               run: npm run test
 
             - name: Build the project
