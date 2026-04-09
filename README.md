@@ -1,9 +1,11 @@
 # Professional Portfolio Website + API 🚀
 
+![CI Pipeline](https://github.com/emelipasini/portfolio/actions/workflows/main.yml/badge.svg)
+
 This repository houses the **Professional Portfolio Website + API**, a robust backend service designed to showcase my journey as a Full Stack Developer. Built with a focus on **Clean Code**, type safety, and industry-standard engineering practices.
 
-🌐 Live Demo: [emelipasini.com](https://emelipasini.com)
-📖 Live API: [Swagger UI](https://emelipasini.com)
+- 🌐 Live Demo: [emelipasini.com](https://emelipasini.com)
+- 📖 Live API: [Swagger UI](https://emelipasini.com)
 
 ## 🛠️ Architecture & Tech Stack
 
@@ -29,6 +31,7 @@ I prioritize code quality and maintainability through a strictly automated workf
 - **Git Hooks (Husky):**
     - **Pre-commit:** Automated unit testing and linting verification.
     - **Commitlint:** Enforcement of **Conventional Commits** for a readable and traceable project history.
+    - **CI/CD Ready:** High test coverage and standardized environment configurations ensure regression-free deployments.
 
 ## ✨ Key Features
 
