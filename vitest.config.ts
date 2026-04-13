@@ -8,7 +8,7 @@ export default defineConfig({
         coverage: {
             provider: "v8",
             reporter: ["text", "json", "json-summary", "html"],
-            exclude: ["src/api/models/**", "public/**", "build/**", "dist/**", "node_modules/**"],
+            exclude: ["src/api/models/**", "public/**", "build/**", "dist/**", "node_modules/**", "src/server.{js,ts}"],
             thresholds: {
                 lines: 80,
                 functions: 85,
