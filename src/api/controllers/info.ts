@@ -1,12 +1,14 @@
 import pageInfo from "../../data/page-info.json";
 import profile from "../../data/profile.json";
 import ContactSchema from "../../schemas/contact";
-import { env } from "../../schemas/env";
 import logger from "../../utils/logger";
+import { DiscordService } from "../services/discord";
 
 import type { Request, Response, NextFunction } from "express";
 
 export class InfoController {
+    constructor(private readonly discordService = new DiscordService()) {}
+
     getProfile(_req: Request, res: Response): void {
         res.json({
             status: "Success",
@@ -34,20 +36,7 @@ export class InfoController {
 
         const { name, email, message } = result.data;
 
-        await fetch(env.DISCORD_WEBHOOK_URL, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                content: "📩 **New message from API**",
-                embeds: [
-                    {
-                        title: `From: ${name} (${email})`,
-                        description: message,
-                        color: env.ENVIRONMENT === "development" ? 3066993 : 10656766,
-                    },
-                ],
-            }),
-        });
+        await this.discordService.sendMessageToDiscord(name, email, message);
 
         logger.info("Message successfully sent to Discord");
         return res.json({
