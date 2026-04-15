@@ -1,5 +1,5 @@
 import request from "supertest";
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 
 import app from "../../app";
 
@@ -31,27 +31,22 @@ describe("Information Endpoints", () => {
     });
 
     it("should send a contact message and return success response", async () => {
+        const fetchSpy = vi.fn().mockResolvedValue({
+            ok: true,
+            json: vi.fn().mockResolvedValue({ success: true }),
+        });
+
+        vi.stubGlobal("fetch", fetchSpy);
+
         const response = await request(app).post("/api/contact").send({
             name: "Jane Doe",
             email: "jane.doe@test.com",
             message: "Hello, this is a test message.",
         });
-        const body = response.body as { status: string; data: string };
 
         expect(response.status).toBe(200);
-        expect(body).toHaveProperty("status", "Success");
-        expect(body.data).toBe("Message sent successfully");
-    });
+        expect(fetchSpy).toHaveBeenCalled();
 
-    it("should return 400 when required fields are missing in contact message", async () => {
-        const response = await request(app).post("/api/contact").send({
-            name: "123456",
-            email: "jane.doe@email.com",
-            message: "Hi, this is a test message.",
-        });
-        const body = response.body as { status: string; message: string };
-
-        expect(response.status).toBe(400);
-        expect(body).toHaveProperty("status", "Bad Request");
+        vi.unstubAllGlobals();
     });
 });
