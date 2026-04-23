@@ -8,4 +8,6 @@ const envSchema = z.object({
     DISCORD_WEBHOOK_URL: z.string().url(),
 });
 
+export type envData = z.infer<typeof envSchema>;
+
 export const env = envSchema.parse(process.env);
