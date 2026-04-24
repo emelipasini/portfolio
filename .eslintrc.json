@@ -20,6 +20,12 @@
                 "tsconfigRootDir": ".",
                 "project": ["./tsconfig.json"]
             }
+        },
+        {
+            "files": ["**/tests/**/*.ts", "**/*.test.ts", "**/*.spec.ts"],
+            "rules": {
+                "@typescript-eslint/unbound-method": "off"
+            }
         }
     ],
     "ignorePatterns": [".eslintrc.js", "build"],
@@ -54,9 +60,12 @@
         "import/order": [
             "error",
             {
-                "groups": ["builtin", "external", "internal", ["parent", "sibling"], "index", "type"],
-                "newlines-between": "always",
-                "alphabetize": { "order": "asc", "caseInsensitive": true }
+                "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "type"],
+                "alphabetize": {
+                    "order": "asc",
+                    "caseInsensitive": true
+                },
+                "newlines-between": "always"
             }
         ]
     },
