@@ -1,4 +1,3 @@
-import { projects } from "../../data/projects.json";
 import logger from "../../utils/logger";
 
 import type { Project } from "../models/project.js";
@@ -9,7 +8,7 @@ export class ProjectController {
     private readonly dataIndex = new Map<string, Project>();
     private isIndexed = false;
 
-    constructor() {
+    constructor(private readonly projects: Project[]) {
         this.buildIndex();
     }
 
@@ -35,7 +34,7 @@ export class ProjectController {
     private buildIndex(): void {
         if (this.isIndexed) return;
 
-        (projects as Project[]).forEach((project: Project) => {
+        this.projects.forEach((project: Project) => {
             const idStr = String(project.id);
 
             this.dataIndex.set(idStr, project);
@@ -66,7 +65,7 @@ export class ProjectController {
         const query = typeof req.query.q === "string" ? req.query.q.toLowerCase().trim() : "";
 
         if (query === "") {
-            return res.json({ status: "Success", data: projects });
+            return res.json({ status: "Success", data: this.projects });
         }
 
         const searchTerms = query.split(/\s+/);
@@ -97,9 +96,7 @@ export class ProjectController {
             if (resultIds.size === 0) {
                 resultIds = new Set(currentTermIds);
             } else {
-                for (const id of resultIds) {
-                    if (!currentTermIds.has(id)) resultIds.delete(id);
-                }
+                resultIds = new Set([...resultIds].filter((id) => currentTermIds.has(id)));
             }
         });
 
