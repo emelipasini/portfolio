@@ -1,6 +1,6 @@
 import { vi } from "vitest";
 
-import type { Request, Response } from "express";
+import type { Request, Response, NextFunction } from "express";
 import type { Mock } from "vitest";
 
 interface ResMock {
@@ -11,6 +11,7 @@ interface ResMock {
 interface ReqResMocks {
     req: Request;
     res: Response & ResMock;
+    next?: NextFunction;
 }
 
 export const createReqResMocks = (): ReqResMocks => {
@@ -24,5 +25,7 @@ export const createReqResMocks = (): ReqResMocks => {
         query: {},
     } as unknown as Request;
 
-    return { req, res };
+    const next = vi.fn();
+
+    return { req, res, next };
 };
