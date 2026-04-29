@@ -1,11 +1,11 @@
 import { resolve } from "node:path";
 
 import express, { json } from "express";
-import "dotenv/config";
+
+import { version } from "../package.json";
 
 import apiRouter from "./api/index.js";
 import { corsMiddleware } from "./middlewares/cors.js";
-import { version } from "../package.json";
 
 import type { Request, Response } from "express";
 

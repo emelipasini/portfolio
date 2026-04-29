@@ -1,10 +1,8 @@
+import { env } from "../schemas/env";
+
 import type { NextFunction, Request, Response } from "express";
 
-const PORT = process.env.PORT ?? 3000;
-const DOMAIN = process.env.DOMAIN ?? "http://localhost";
-const ENVIRONMENT = process.env.ENVIRONMENT ?? "development";
-
-const URL = `${DOMAIN}:${PORT}`;
+const URL = `${env.DOMAIN}:${env.PORT}`;
 const ACCEPTED_ORIGINS = [URL];
 
 export const corsMiddleware = (req: Request, res: Response, next: NextFunction): void => {
@@ -23,7 +21,7 @@ export const corsMiddleware = (req: Request, res: Response, next: NextFunction):
         res.setHeader("Referrer-Policy", "no-referrer");
     }
 
-    if (ENVIRONMENT === "development") {
+    if (env.ENVIRONMENT === "development") {
         res.header("Content-Security-Policy", "img-src 'self' data:; style-src 'self' 'unsafe-inline'");
     }
 

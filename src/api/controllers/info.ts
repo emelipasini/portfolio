@@ -2,14 +2,12 @@ import pageInfo from "../../data/page-info.json";
 import profile from "../../data/profile.json";
 import ContactSchema from "../../schemas/contact";
 import logger from "../../utils/logger";
+import { DiscordService } from "../services/discord";
 
 import type { Request, Response, NextFunction } from "express";
 
 export class InfoController {
-    constructor(
-        private readonly webhookUrl = process.env.DISCORD_WEBHOOK_URL,
-        private readonly env = process.env.ENVIRONMENT
-    ) {}
+    constructor(private readonly discordService = new DiscordService()) {}
 
     getProfile(_req: Request, res: Response): void {
         res.json({
@@ -38,24 +36,7 @@ export class InfoController {
 
         const { name, email, message } = result.data;
 
-        if (this.webhookUrl === undefined) {
-            throw new Error("WEBHOOK_URL is not defined in environment variables");
-        }
-
-        await fetch(this.webhookUrl, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                content: "📩 **New message from API**",
-                embeds: [
-                    {
-                        title: `From: ${name} (${email})`,
-                        description: message,
-                        color: this.env === "development" ? 3066993 : 10656766,
-                    },
-                ],
-            }),
-        });
+        await this.discordService.sendMessageToDiscord(name, email, message);
 
         logger.info("Message successfully sent to Discord");
         return res.json({

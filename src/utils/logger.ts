@@ -2,10 +2,12 @@ import path from "node:path";
 
 import pino from "pino";
 
+import { env } from "../schemas/env.js";
+
 const logDir = path.join(process.cwd(), "logs");
 const logFilePath = path.join(logDir, "app.log");
 
-const isProduction = process.env.ENVIRONMENT === "production";
+const isProduction = env.ENVIRONMENT === "production";
 
 // prettier-ignore
 const logger = pino({

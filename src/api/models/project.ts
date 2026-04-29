@@ -5,7 +5,7 @@ interface Project {
     technologies: string[];
     type: "Personal" | "Professional";
     status: "Completed" | "In Progress";
-    repository: string;
+    repository?: string;
 }
 
 export type { Project };

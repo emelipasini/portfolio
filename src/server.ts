@@ -1,14 +1,11 @@
 import app from "./app.js";
+import { env } from "./schemas/env.js";
 import logger from "./utils/logger.js";
 
-const PORT = process.env.PORT ?? 3000;
-const DOMAIN = process.env.DOMAIN ?? "http://localhost";
-const ENV = process.env.NODE_ENV ?? "development";
+app.listen(env.PORT, () => {
+    logger.info(`Production server running on ${env.DOMAIN}:${env.PORT}`);
 
-app.listen(PORT, () => {
-    logger.info(`Production server running on ${DOMAIN}:${PORT}`);
-
-    if (ENV === "development") {
-        console.log(`Development server running on ${DOMAIN}:${PORT}`);
+    if (env.ENVIRONMENT === "development") {
+        console.log(`Development server running on ${env.DOMAIN}:${env.PORT}`);
     }
 });
