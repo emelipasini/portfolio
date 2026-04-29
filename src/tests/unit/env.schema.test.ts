@@ -20,14 +20,14 @@ describe("Env Configuration Unit Test", () => {
         expect(env.DISCORD_WEBHOOK_URL).toBe("https://discord.com/api/webhooks/1234567890/abcdefghijklmnopqrstuvwxyz");
     });
 
-    it("should fail validation if WEBHOOK_URL is missing", async () => {
-        vi.stubEnv("WEBHOOK_URL", "");
+    it("should fail validation if DISCORD_WEBHOOK_URL is missing", async () => {
+        vi.stubEnv("DISCORD_WEBHOOK_URL", "");
 
         await expect(import("../../schemas/env")).rejects.toThrow();
     });
 
-    it("should fail if WEBHOOK_URL is not a valid URL", async () => {
-        vi.stubEnv("WEBHOOK_URL", "not-a-valid-url");
+    it("should fail if DISCORD_WEBHOOK_URL is not a valid URL", async () => {
+        vi.stubEnv("DISCORD_WEBHOOK_URL", "not-a-valid-url");
 
         await expect(import("../../schemas/env")).rejects.toThrow(/url/i);
     });
