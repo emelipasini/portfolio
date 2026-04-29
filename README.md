@@ -1,11 +1,18 @@
 # Professional Portfolio Website + API 🚀
 
 ![CI Pipeline](https://github.com/emelipasini/portfolio/actions/workflows/main.yml/badge.svg)
+![codecov](https://codecov.io/gh/emelipasini/portfolio/graph/badge.svg)
 
 This repository houses the **Professional Portfolio Website + API**, a robust backend service designed to showcase my journey as a Full Stack Developer. Built with a focus on **Clean Code**, type safety, and industry-standard engineering practices.
 
 - 🌐 Live Demo: [emelipasini.com](https://emelipasini.com)
 - 📖 Live API: [Swagger UI](https://emelipasini.com)
+
+**Core Metrics:**
+
+- 🟢 **Coverage:** 100% (Strictly enforced by Vitest & Codecov)
+- 🏗️ **Architecture:** Clean Architecture / Modular Monolith
+- 🚀 **CI/CD:** GitHub Actions + Codecov (Fail-fast pipeline)
 
 ## 🛠️ Architecture & Tech Stack
 
@@ -17,11 +24,15 @@ This project is built with a focus on performance, maintainability, and clean ar
     - **Zod**: Schema validation and runtime type safety for all incoming data.
     - **Swagger (OpenAPI)**: Interactive documentation accessible via `/api/docs` for seamless endpoint exploration.
     - **Pino**: High-performance structured logging for real-time monitoring and debugging.
-- **Quality Assurance**:
-    - **Vitest**: Modern testing suite ensuring high code coverage and regression-free deployments.
-    - **ESLint & Prettier**: For consistent code style and bug prevention.
-    - **Husky**: Automated pre-commit hooks that run unit tests and linting verification.
-    - **Commitlint**: Enforcing conventional commit messages for a clear and professional project history.
+
+## 🛡️ Quality Assurance & CI/CD
+
+The project maintains a 100% coverage policy. The CI/CD pipeline is configured to fail if any new code is missing tests or if any logic branch remains uncovered.
+
+- **Testing Suite:** Unit and integration tests powered by [Vitest](https://vitest.dev/), focusing on core business logic.
+- **Coverage Oversight:** Real-time tracking via [Codecov](https://codecov.io/) to maintain high standards and prevent regressions.
+- **Fail-Safe Environments:** Strict runtime schema validation with [Zod](https://zod.dev/) to ensure the app never starts with invalid configurations.
+- **Automated Gates:** CI/CD workflows that block unstable code from reaching the main branch.
 
 ## ⚙️ Engineering Standards
 
@@ -33,16 +44,13 @@ I prioritize code quality and maintainability through a strictly automated workf
     - **Commitlint:** Enforcement of **Conventional Commits** for a readable and traceable project history.
     - **CI/CD Ready:** High test coverage and standardized environment configurations ensure regression-free deployments.
 
-## ✨ Key Features
+## ✨ Key Features & Engineering Pillars
 
-- **Type-Safe Development:** End-to-end type safety using TypeScript and runtime validation via **Zod**.
-- **Interactive Documentation:** Explore and test endpoints directly through the integrated **Swagger UI**.
-- **Structured Logging:** Real-time monitoring and debugging with **Pino**.
-- **High Reliability:** Comprehensive testing suite with **Vitest** to guarantee core functionality.
-- **Standardized History:** A professional-grade commit history for better collaboration and traceability.
-- **Responsive Design:** Fully optimized for mobile, tablet, and desktop views.
-- **Modern Workflow:** Implements a professional development pipeline with automated linting and formatting.
-- **Clean Structure:** Organized modularly to allow for easy scaling and updates of new projects.
+- **🛡️ Bulletproof Reliability:** Comprehensive test suite with **Vitest** and **Codecov**, ensuring >80% coverage and regression-free updates.
+- **🛠️ Strict Type Safety:** Runtime validation via **Zod** combined with TypeScript's compile-time checks for end-to-end data integrity.
+- **📖 Self-Documenting API:** Fully interactive **Swagger (OpenAPI 3.0)** documentation.
+- **🪵 Observability:** Structured, high-performance logging with **Pino**, ready for production monitoring.
+- **🤖 Automated Workflow:** Zero-config consistency with Husky, Commitlint, and automated Linting.
 
 ## 🚀 Getting Started
 
@@ -60,7 +68,15 @@ git clone https://github.com/emelipasini/portfolio.git
 cd portfolio
 ```
 
-2. **Run the following commands:**
+2. **Set up Environment Variables:**
+
+Copy the example env file and fill in your values:
+
+```shell
+cp .env.example .env
+```
+
+3. **Run the following commands:**
 
 ```shell
 npm install
@@ -68,7 +84,22 @@ npm run build
 npm start
 ```
 
-3. **Open your browser in the url that shows the console.**
+4. **Access the application:**
+
+Open `http://localhost:3000` as shown in your console.
+
+## 📊 Tests Coverage
+
+<details>
+<summary>See the coverage graph</summary>
+
+### Codecov Sunburst
+
+![Codecov Sunburst](https://codecov.io/gh/emelipasini/portfolio/graphs/sunburst.svg)
+
+_This graphic shows the tests distribution in the entire project._
+
+</details>
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
