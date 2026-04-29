@@ -35,7 +35,6 @@ describe("ProjectController", () => {
             req.query.q = "Golang";
             controller.searchProjects(req, res);
 
-            // eslint-disable-next-line @typescript-eslint/unbound-method
             expect(res.status).toHaveBeenCalledWith(404);
             expect(res.json).toHaveBeenCalledWith(expect.objectContaining({ status: "Not found", data: [] }));
         });
