@@ -2,8 +2,16 @@
     "openapi": "3.0.0",
     "info": {
         "title": "Portfolio API",
-        "description": "API designed to manage and display technical projects. This project serves as a demonstration of modern backend architecture, clean code principles, and professional documentation standards.",
-        "version": "3.0.0"
+        "description": "API designed to manage and display technical projects. This project serves as a demonstration of modern backend architecture, clean code principles, and professional documentation standards.\n\n![codecov](https://codecov.io/gh/emelipasini/portfolio/graph/badge.svg)",
+        "version": "3.0.0",
+        "contact": {
+            "name": "Source Code in GitHub",
+            "url": "https://github.com/emelipasini/portfolio"
+        }
+    },
+    "externalDocs": {
+        "description": "View Full Coverage Report",
+        "url": "https://app.codecov.io/github/emelipasini/portfolio"
     },
     "servers": [
         {

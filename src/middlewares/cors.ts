@@ -12,17 +12,24 @@ export const corsMiddleware = (req: Request, res: Response, next: NextFunction):
         res.setHeader("Access-Control-Allow-Origin", origin);
         res.setHeader("Access-Control-Allow-Methods", "GET");
         res.setHeader("Strict-Transport-Security", "max-age=63072000; includeSubDomains; preload");
-        res.setHeader(
-            "Content-Security-Policy",
-            "default-src 'self' https:; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval'"
-        );
+        const cspPolicy = [
+            "default-src 'self' https:;",
+            "style-src 'self' 'unsafe-inline';",
+            "img-src 'self' data: https://codecov.io;",
+            "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+        ].join(" ");
+
+        res.setHeader("Content-Security-Policy", cspPolicy);
         res.setHeader("X-Content-Type-Options", "nosniff");
         res.setHeader("X-Frame-Options", "DENY");
         res.setHeader("Referrer-Policy", "no-referrer");
     }
 
     if (env.ENVIRONMENT === "development") {
-        res.header("Content-Security-Policy", "img-src 'self' data:; style-src 'self' 'unsafe-inline'");
+        res.setHeader(
+            "Content-Security-Policy",
+            "img-src 'self' data: https://codecov.io; style-src 'self' 'unsafe-inline'"
+        );
     }
 
     next();
