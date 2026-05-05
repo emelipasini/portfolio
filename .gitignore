@@ -36,3 +36,6 @@ node_modules/
 
 # test coverage
 coverage
+
+# Dev files
+TODO.md
