@@ -2,16 +2,12 @@
     "openapi": "3.0.0",
     "info": {
         "title": "Portfolio API",
-        "description": "API designed to manage and display technical projects. This project serves as a demonstration of modern backend architecture, clean code principles, and professional documentation standards.\n\n![codecov](https://codecov.io/gh/emelipasini/portfolio/graph/badge.svg)",
-        "version": "3.0.0",
-        "contact": {
-            "name": "Source Code in GitHub",
-            "url": "https://github.com/emelipasini/portfolio"
-        }
+        "description": "![codecov](https://codecov.io/gh/emelipasini/portfolio/graph/badge.svg) => [View Tests Coverage Report](https://app.codecov.io/github/emelipasini/portfolio)\n\nAPI designed with Node.js/TypeScript to manage and display technical projects. This project serves as a demonstration of modern backend architecture, clean code principles, and professional documentation standards.",
+        "version": "3.0.0"
     },
     "externalDocs": {
-        "description": "View Full Coverage Report",
-        "url": "https://app.codecov.io/github/emelipasini/portfolio"
+        "description": "GitHub Repository",
+        "url": "https://github.com/emelipasini/portfolio"
     },
     "servers": [
         {
@@ -72,25 +68,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "name": {
-                                        "type": "string",
-                                        "description": "Name of the sender",
-                                        "example": "Jane Doe"
-                                    },
-                                    "email": {
-                                        "type": "string",
-                                        "description": "Email address of the sender so I can reply",
-                                        "example": "jane.doe@email.com"
-                                    },
-                                    "message": {
-                                        "type": "string",
-                                        "description": "The message content",
-                                        "example": "Hello, I would like to get in touch with you."
-                                    }
-                                },
-                                "required": ["name", "email", "message"]
+                                "$ref": "#/components/schemas/ContactRequest"
                             }
                         }
                     }
@@ -127,7 +105,17 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Successful response with a list of projects"
+                        "description": "Successful response with a list of projects",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Project"
+                                    }
+                                }
+                            }
+                        }
                     },
                     "404": {
                         "description": "No projects found matching the search criteria"
@@ -150,20 +138,95 @@
                         "description": "ID of the project to retrieve",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "integer"
                         },
-                        "example": "1"
+                        "example": 1
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Successful response with project details"
+                        "description": "Project details found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Project"
+                                }
+                            }
+                        }
                     },
                     "404": {
                         "description": "Project not found with the specified ID"
                     },
                     "500": {
                         "description": "Internal server error"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ContactRequest": {
+                "type": "object",
+                "required": ["name", "email", "message"],
+                "properties": {
+                    "name": { "type": "string", "description": "Name of the sender", "example": "Jane Doe" },
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "description": "Email address of the sender so I can reply",
+                        "example": "jane.doe@email.com"
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "The message content",
+                        "example": "Hello, I would like to get in touch with you."
+                    }
+                }
+            },
+            "Project": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "Unique identifier for the project",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Title of the project",
+                        "example": "Portfolio API"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Detailed summary of the project goals and achievements",
+                        "example": "Backend system for managing professional work and personal projects."
+                    },
+                    "technologies": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of technologies and frameworks used",
+                        "example": ["TypeScript", "Node.js", "Express", "Zod"]
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": ["Personal", "Professional"],
+                        "description": "Indicates if the project was for a client or a personal initiative",
+                        "example": "Professional"
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": ["Completed", "In Progress"],
+                        "description": "Current state of the project",
+                        "example": "Completed"
+                    },
+                    "repository": {
+                        "type": "string",
+                        "format": "uri",
+                        "description": "Link to the source code (optional)",
+                        "example": "https://github.com/emelipasini/portfolio"
                     }
                 }
             }
