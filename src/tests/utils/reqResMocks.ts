@@ -14,7 +14,11 @@ interface ReqResMocks {
     next?: NextFunction;
 }
 
-export const createReqResMocks = (): ReqResMocks => {
+export const createReqResMocks = (customIp: string = "1.2.3.4"): ReqResMocks => {
+    const headers: Record<string, string> = {
+        "x-forwarded-for": customIp,
+    };
+
     const res = {
         json: vi.fn().mockReturnThis(),
         status: vi.fn().mockReturnThis(),
@@ -23,6 +27,9 @@ export const createReqResMocks = (): ReqResMocks => {
     const req = {
         params: {},
         query: {},
+        headers,
+        header: vi.fn((name: string) => headers[name.toLowerCase()]),
+        ip: customIp,
     } as unknown as Request;
 
     const next = vi.fn();
