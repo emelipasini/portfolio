@@ -10,7 +10,7 @@ interface RateLimitOptions {
 
 type IpCounter = Record<string, { count: number; startTime: number }>;
 
-interface RateLimitHandler extends RequestHandler {
+export interface RateLimitHandler extends RequestHandler {
     _ipCounter?: IpCounter;
 }
 
