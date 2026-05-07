@@ -7,6 +7,7 @@ This repository houses the **Professional Portfolio Website + API**, a robust ba
 
 - 🌐 Live Demo: [emelipasini.com](https://emelipasini.com)
 - 📖 Live API: [Swagger UI](https://emelipasini.com)
+- 🧪 Tests Coverage report: [Codecov](https://app.codecov.io/github/emelipasini/portfolio)
 
 **Core Metrics:**
 
@@ -46,7 +47,7 @@ I prioritize code quality and maintainability through a strictly automated workf
 
 ## ✨ Key Features & Engineering Pillars
 
-- **🛡️ Bulletproof Reliability:** Comprehensive test suite with **Vitest** and **Codecov**, ensuring >80% coverage and regression-free updates.
+- **🛡️ Bulletproof Reliability:** Comprehensive test suite with **Vitest** and **Codecov**, ensuring 100% coverage and regression-free updates.
 - **🛠️ Strict Type Safety:** Runtime validation via **Zod** combined with TypeScript's compile-time checks for end-to-end data integrity.
 - **📖 Self-Documenting API:** Fully interactive **Swagger (OpenAPI 3.0)** documentation.
 - **🪵 Observability:** Structured, high-performance logging with **Pino**, ready for production monitoring.
@@ -89,6 +90,19 @@ npm start
 Open `http://localhost:3000` as shown in your console.
 
 ## 📊 Tests Coverage
+
+### In cloned repository
+
+1. **Run the following commands:**
+
+```shell
+npm run test:coverage
+npm run test:ui
+```
+
+### Online
+
+[Codecov](https://app.codecov.io/github/emelipasini/portfolio)
 
 <details>
 <summary>See the coverage graph</summary>

@@ -2,8 +2,12 @@
     "openapi": "3.0.0",
     "info": {
         "title": "Portfolio API",
-        "description": "API designed to manage and display technical projects. This project serves as a demonstration of modern backend architecture, clean code principles, and professional documentation standards.",
+        "description": "![codecov](https://codecov.io/gh/emelipasini/portfolio/graph/badge.svg) => [View Tests Coverage Report](https://app.codecov.io/github/emelipasini/portfolio)\n\nAPI designed with Node.js/TypeScript to manage and display technical projects. This project serves as a demonstration of modern backend architecture, clean code principles, and professional documentation standards. [Go back to the website](https://emelipasini.com).",
         "version": "3.0.0"
+    },
+    "externalDocs": {
+        "description": "GitHub Repository",
+        "url": "https://github.com/emelipasini/portfolio"
     },
     "servers": [
         {
@@ -31,10 +35,23 @@
                 "description": "Retrieve detailed information about the profile, including name, description, and social media links.",
                 "responses": {
                     "200": {
-                        "description": "Successful response with profile information"
+                        "description": "Successful response with profile information",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        { "$ref": "#/components/schemas/SuccessResponse" },
+                                        { "type": "object", "properties": { "data": { "type": "object" } } }
+                                    ]
+                                }
+                            }
+                        }
                     },
                     "500": {
-                        "description": "Internal server error"
+                        "description": "Internal server error",
+                        "content": {
+                            "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } }
+                        }
                     }
                 }
             }
@@ -46,10 +63,23 @@
                 "description": "Retrieve detailed information about this API and the website.",
                 "responses": {
                     "200": {
-                        "description": "Successful response with profile information"
+                        "description": "Successful response with project information",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        { "$ref": "#/components/schemas/SuccessResponse" },
+                                        { "type": "object", "properties": { "data": { "type": "object" } } }
+                                    ]
+                                }
+                            }
+                        }
                     },
                     "500": {
-                        "description": "Internal server error"
+                        "description": "Internal server error",
+                        "content": {
+                            "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } }
+                        }
                     }
                 }
             }
@@ -64,38 +94,40 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "type": "object",
-                                "properties": {
-                                    "name": {
-                                        "type": "string",
-                                        "description": "Name of the sender",
-                                        "example": "Jane Doe"
-                                    },
-                                    "email": {
-                                        "type": "string",
-                                        "description": "Email address of the sender so I can reply",
-                                        "example": "jane.doe@email.com"
-                                    },
-                                    "message": {
-                                        "type": "string",
-                                        "description": "The message content",
-                                        "example": "Hello, I would like to get in touch with you."
-                                    }
-                                },
-                                "required": ["name", "email", "message"]
+                                "$ref": "#/components/schemas/ContactRequest"
                             }
                         }
                     }
                 },
                 "responses": {
                     "200": {
-                        "description": "Message sent successfully"
+                        "description": "Message sent successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        { "$ref": "#/components/schemas/SuccessResponse" },
+                                        { "type": "object", "properties": { "data": { "type": "object" } } }
+                                    ]
+                                }
+                            }
+                        }
                     },
                     "400": {
-                        "description": "Bad request"
+                        "description": "Validation error in the request body",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/BadRequestResponse"
+                                }
+                            }
+                        }
                     },
                     "500": {
-                        "description": "Internal server error"
+                        "description": "Internal server error",
+                        "content": {
+                            "application/json": { "schema": { "$ref": "#/components/schemas/ErrorResponse" } }
+                        }
                     }
                 }
             }
@@ -119,13 +151,49 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Successful response with a list of projects"
+                        "description": "Successful response with a list of projects",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        { "$ref": "#/components/schemas/SuccessResponse" },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "data": {
+                                                    "type": "array",
+                                                    "items": { "$ref": "#/components/schemas/Project" }
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
                     },
                     "404": {
-                        "description": "No projects found matching the search criteria"
+                        "description": "Project not found with the specified criteria",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
                     },
                     "500": {
-                        "description": "Internal server error"
+                        "description": "Internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                },
+                                "example": {
+                                    "status": "Internal Server Error",
+                                    "data": {}
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -142,20 +210,174 @@
                         "description": "ID of the project to retrieve",
                         "required": true,
                         "schema": {
-                            "type": "string"
+                            "type": "integer"
                         },
-                        "example": "1"
+                        "example": 1
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Successful response with project details"
+                        "description": "Project details found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "allOf": [
+                                        { "$ref": "#/components/schemas/SuccessResponse" },
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "data": { "$ref": "#/components/schemas/Project" }
+                                            }
+                                        }
+                                    ]
+                                }
+                            }
+                        }
                     },
                     "404": {
-                        "description": "Project not found with the specified ID"
+                        "description": "Project not found with the specified ID",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                }
+                            }
+                        }
                     },
                     "500": {
-                        "description": "Internal server error"
+                        "description": "Internal server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ErrorResponse"
+                                },
+                                "example": {
+                                    "status": "Internal Server Error",
+                                    "data": {}
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "SuccessResponse": {
+                "type": "object",
+                "required": ["status", "data"],
+                "properties": {
+                    "status": { "type": "string", "example": "Success" },
+                    "data": { "description": "The actual content of the response (object or array)" }
+                }
+            },
+            "ContactRequest": {
+                "type": "object",
+                "required": ["name", "email", "message"],
+                "properties": {
+                    "name": { "type": "string", "description": "Name of the sender", "example": "Jane Doe" },
+                    "email": {
+                        "type": "string",
+                        "format": "email",
+                        "description": "Email address of the sender so I can reply",
+                        "example": "jane.doe@email.com"
+                    },
+                    "message": {
+                        "type": "string",
+                        "description": "The message content",
+                        "example": "Hello, I would like to get in touch with you."
+                    }
+                }
+            },
+            "Project": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "integer",
+                        "description": "Unique identifier for the project",
+                        "example": 1
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Title of the project",
+                        "example": "Portfolio API"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Detailed summary of the project goals and achievements",
+                        "example": "Backend system for managing professional work and personal projects."
+                    },
+                    "technologies": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "List of technologies and frameworks used",
+                        "example": ["TypeScript", "Node.js", "Express", "Zod"]
+                    },
+                    "type": {
+                        "type": "string",
+                        "enum": ["Personal", "Professional"],
+                        "description": "Indicates if the project was for a client or a personal initiative",
+                        "example": "Professional"
+                    },
+                    "status": {
+                        "type": "string",
+                        "enum": ["Completed", "In Progress"],
+                        "description": "Current state of the project",
+                        "example": "Completed"
+                    },
+                    "repository": {
+                        "type": "string",
+                        "format": "uri",
+                        "description": "Link to the source code (optional)",
+                        "example": "https://github.com/emelipasini/portfolio"
+                    }
+                }
+            },
+            "ErrorResponse": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "description": "Short error identifier or status message",
+                        "example": "Not found"
+                    },
+                    "data": {
+                        "type": "object",
+                        "description": "Additional error details or an empty object",
+                        "example": {}
+                    }
+                }
+            },
+            "BadRequestResponse": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "example": "Bad Request"
+                    },
+                    "_errors": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Global or top-level validation errors",
+                        "example": []
+                    },
+                    "message": {
+                        "type": "object",
+                        "properties": {
+                            "_errors": {
+                                "type": "array",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "example": ["Message must be at least 10 characters long"]
+                            }
+                        },
+                        "description": "Detailed field-specific validation errors"
                     }
                 }
             }

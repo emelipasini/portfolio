@@ -6,6 +6,7 @@ import { version } from "../package.json";
 
 import apiRouter from "./api/index.js";
 import { corsMiddleware } from "./middlewares/cors.js";
+import { createRateLimitMiddleware } from "./middlewares/rateLimit.js";
 
 import type { Request, Response } from "express";
 
@@ -13,6 +14,13 @@ const app = express();
 
 app.disable("x-powered-by");
 app.use(json());
+app.use(
+    createRateLimitMiddleware({
+        windowMs: 15 * 60 * 1000,
+        maxRequests: 100,
+        intervalMs: 60 * 60 * 1000,
+    })
+);
 app.use(corsMiddleware);
 
 app.set("view engine", "ejs");

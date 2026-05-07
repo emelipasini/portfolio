@@ -40,10 +40,25 @@
     margin-top: 7px;
 }
 
+#standards {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 80px;
+}
+
+#standards .list-item {
+    color: var(--red);
+    font-size: 1.1em;
+}
+
+#standards .list-title {
+    color: var(--blue);
+}
+
 #experience {
     width: 80%;
     margin: 0 auto;
-    padding-top: 30px;
+    padding-top: 60px;
 }
 
 #experience p {
@@ -68,25 +83,6 @@
 }
 
 #experience .more-info {
-    font-style: italic;
-    color: var(--blue);
-}
-
-.technologies {
-    width: 100%;
-}
-
-.technologies h3 {
-    margin-top: 50px;
-    font-size: 1.3em;
-}
-
-.technologies li {
-    font-size: 1.1em;
-    margin-left: 15px;
-}
-
-.technologies strong {
     font-style: italic;
     color: var(--blue);
 }

@@ -18,9 +18,7 @@ describe("InfoController - sendMessage", () => {
         discordService = new DiscordService();
         controller = new InfoController(discordService);
         const mocks = createReqResMocks();
-        req = mocks.req as unknown as Request;
-        res = mocks.res as unknown as Response;
-        next = mocks.next as unknown as NextFunction;
+        ({ req, res, next } = mocks);
     });
 
     it("should return 400 if validation fails", async () => {
