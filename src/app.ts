@@ -14,6 +14,11 @@ const app = express();
 
 app.disable("x-powered-by");
 app.use(json());
+
+app.get("/health", (_req: Request, res: Response) => {
+    res.json({ status: "Ok" });
+});
+
 app.use(
     createRateLimitMiddleware({
         windowMs: 15 * 60 * 1000,
@@ -32,10 +37,6 @@ app.use("/api", apiRouter);
 app.get("/version", (_req: Request, res: Response) => {
     const projectVersion = version;
     res.json({ version: projectVersion });
-});
-
-app.get("/health", (_req: Request, res: Response) => {
-    res.json({ status: "Ok" });
 });
 
 app.get(["/.well-known/security.txt", "/security.txt"], (_req: Request, res: Response) => {
