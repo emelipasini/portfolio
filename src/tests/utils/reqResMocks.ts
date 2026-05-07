@@ -11,7 +11,7 @@ interface ResMock {
 interface ReqResMocks {
     req: Request;
     res: Response & ResMock;
-    next?: NextFunction;
+    next: NextFunction;
 }
 
 export const createReqResMocks = (customIp: string = "1.2.3.4"): ReqResMocks => {
@@ -20,9 +20,11 @@ export const createReqResMocks = (customIp: string = "1.2.3.4"): ReqResMocks => 
     };
 
     const res = {
-        json: vi.fn().mockReturnThis(),
         status: vi.fn().mockReturnThis(),
-    } as unknown as { json: Mock; status: Mock } & Response;
+        json: vi.fn().mockReturnThis(),
+        end: vi.fn().mockReturnThis(),
+        setHeader: vi.fn().mockReturnThis(),
+    } as unknown as Response & ResMock;
 
     const req = {
         params: {},
