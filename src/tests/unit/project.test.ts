@@ -16,8 +16,7 @@ describe("ProjectController", () => {
         vi.clearAllMocks();
         controller = new ProjectController(mockProjects);
         const mocks = createReqResMocks();
-        req = mocks.req as unknown as Request;
-        res = mocks.res as unknown as Response;
+        ({ req, res } = mocks);
     });
 
     describe("getProjectById", () => {

@@ -15,9 +15,7 @@ describe("CORS Middleware", () => {
     beforeEach(() => {
         vi.clearAllMocks();
         const mocks = createReqResMocks();
-        req = mocks.req as unknown as Request;
-        res = mocks.res as unknown as Response;
-        next = mocks.next as unknown as NextFunction;
+        ({ req, res, next } = mocks);
     });
 
     it("should allow requests with no origin (undefined)", () => {
