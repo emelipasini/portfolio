@@ -3,7 +3,7 @@
     "info": {
         "title": "Portfolio API",
         "description": "![codecov](https://codecov.io/gh/emelipasini/portfolio/graph/badge.svg) => [View Tests Coverage Report](https://app.codecov.io/github/emelipasini/portfolio)\n\nAPI designed with Node.js/TypeScript to manage and display technical projects. This project serves as a demonstration of modern backend architecture, clean code principles, and professional documentation standards. [Go back to the website](https://emelipasini.com).",
-        "version": "3.0.0"
+        "version": "3.2.0"
     },
     "externalDocs": {
         "description": "GitHub Repository",
