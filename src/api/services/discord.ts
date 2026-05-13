@@ -1,4 +1,4 @@
-import { env } from "../../schemas/env";
+import { env } from "../../schemas/env.js";
 import { AppError } from "../models/appError.js";
 
 export class DiscordService {

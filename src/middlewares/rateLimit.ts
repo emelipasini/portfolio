@@ -20,10 +20,8 @@ export const createRateLimitMiddleware = (options: RateLimitOptions): RateLimitH
     const interval = setInterval(() => {
         const now = Date.now();
         for (const key in ipCounter) {
-            if (Object.prototype.hasOwnProperty.call(ipCounter, key)) {
-                if (now - ipCounter[key].startTime > options.windowMs) {
-                    Reflect.deleteProperty(ipCounter, key);
-                }
+            if (now - ipCounter[key].startTime > options.windowMs) {
+                Reflect.deleteProperty(ipCounter, key);
             }
         }
     }, options.intervalMs);

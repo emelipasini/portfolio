@@ -2,7 +2,7 @@ import { resolve } from "node:path";
 
 import express, { json } from "express";
 
-import { version } from "../package.json";
+import version from "../package.json" with { type: "json" };
 
 import apiRouter from "./api/index.js";
 import { corsMiddleware } from "./middlewares/cors.js";

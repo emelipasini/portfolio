@@ -1,12 +1,12 @@
 {
     "compilerOptions": {
-        "target": "es2022",
-        "module": "commonjs",
+        "target": "ESNext",
         "outDir": "./build",
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
         "strict": true,
-        "moduleResolution": "node",
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
         "declaration": true,
         "sourceMap": true,
         "noUnusedLocals": true,

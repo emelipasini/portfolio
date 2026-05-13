@@ -2,7 +2,7 @@ import express from "express";
 import request from "supertest";
 import { describe, it, expect, beforeEach } from "vitest";
 
-import { createRateLimitMiddleware } from "../../middlewares/rateLimit";
+import { createRateLimitMiddleware } from "../../middlewares/rateLimit.js";
 
 describe("Rate Limit Middleware", () => {
     let testApp: express.Application;

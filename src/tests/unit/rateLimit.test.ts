@@ -1,9 +1,9 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 
-import { createRateLimitMiddleware } from "../../middlewares/rateLimit";
-import { createReqResMocks } from "../utils/reqResMocks";
+import { createRateLimitMiddleware } from "../../middlewares/rateLimit.js";
+import { createReqResMocks } from "../utils/reqResMocks.js";
 
-import type { RateLimitHandler } from "../../middlewares/rateLimit";
+import type { RateLimitHandler } from "../../middlewares/rateLimit.js";
 import type { Request, Response, NextFunction } from "express";
 
 describe("Rate Limit - Unit Tests", () => {
@@ -43,7 +43,6 @@ describe("Rate Limit - Unit Tests", () => {
         expect(limiter._ipCounter?.["1.2.3.4"]).toBeDefined();
 
         vi.advanceTimersByTime(11000);
-        vi.runOnlyPendingTimers();
         expect(limiter._ipCounter?.["1.2.3.4"]).toBeUndefined();
     });
 
@@ -60,5 +59,32 @@ describe("Rate Limit - Unit Tests", () => {
 
         limiter(req, res, next);
         expect(limiter._ipCounter?.unknown).toBeDefined();
+    });
+
+    it("should clean up multiple expired IPs but keep the active ones", () => {
+        vi.advanceTimersByTime(4000);
+        limiter(req, res, next);
+
+        vi.advanceTimersByTime(4000);
+        const otherReq = { ...req, header: vi.fn().mockReturnValue("9.9.9.9") } as unknown as Request;
+        limiter(otherReq, res, next);
+
+        vi.advanceTimersByTime(2000);
+        expect(limiter._ipCounter?.["1.2.3.4"]).toBeUndefined();
+        expect(limiter._ipCounter?.["9.9.9.9"]).toBeDefined();
+    });
+
+    it("should not explode if setInterval does not return an object with unref", () => {
+        const setIntervalSpy = vi.spyOn(global, "setInterval");
+        setIntervalSpy.mockReturnValue(12345 as unknown as NodeJS.Timeout);
+
+        expect(() => {
+            createRateLimitMiddleware({
+                windowMs: 5000,
+                maxRequests: 2,
+                intervalMs: 10000,
+            });
+        }).not.toThrow();
+        setIntervalSpy.mockRestore();
     });
 });

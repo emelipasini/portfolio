@@ -1,7 +1,7 @@
 import request from "supertest";
 import { describe, it, expect, vi } from "vitest";
 
-import app from "../../app";
+import app from "../../app.js";
 
 describe("Information Endpoints", () => {
     it("should return developer profile information with status 200", async () => {

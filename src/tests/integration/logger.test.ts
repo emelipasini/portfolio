@@ -1,5 +1,7 @@
 import { describe, it, expect, vi, afterEach } from "vitest";
 
+import type { Logger } from "../../utils/logger.js";
+
 describe("Logger Config", () => {
     afterEach(() => {
         vi.restoreAllMocks();
@@ -11,7 +13,7 @@ describe("Logger Config", () => {
 
         const writeSpy = vi.spyOn(process.stdout, "write").mockImplementation(() => true);
 
-        const { default: logger } = await import("../../utils/logger");
+        const { default: logger } = (await import("../../utils/logger.js")) as unknown as { default: Logger };
 
         const testMessage = "This is a test log message for production environment.";
         logger.info(testMessage);

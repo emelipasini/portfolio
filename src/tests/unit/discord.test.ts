@@ -1,10 +1,10 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 
-import { AppError } from "../../api/models/appError";
-import { DiscordService } from "../../api/services/discord";
+import { AppError } from "../../api/models/appError.js";
+import { DiscordService } from "../../api/services/discord.js";
 
-import type { DiscordPayload } from "../../api/models/discord";
-import type { envData } from "../../schemas/env";
+import type { DiscordPayload } from "../../api/models/discord.js";
+import type { envData } from "../../schemas/env.js";
 
 describe("DiscordService (DI Unit Test)", () => {
     let service: DiscordService;

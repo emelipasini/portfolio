@@ -1,9 +1,10 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 
-import { globalErrorHandler } from "../../middlewares/error";
-import { createReqResMocks } from "../utils/reqResMocks";
+import { globalErrorHandler } from "../../middlewares/error.js";
+import asyncHandler from "../../utils/asyncHandler.js";
+import { createReqResMocks } from "../utils/reqResMocks.js";
 
-import type { AppError } from "../../api/models/appError";
+import type { AppError } from "../../api/models/appError.js";
 import type { Request, Response, NextFunction } from "express";
 
 describe("globalErrorHandler", () => {
@@ -39,5 +40,31 @@ describe("globalErrorHandler", () => {
             status: 500,
             message: "Internal Server Error",
         });
+    });
+});
+
+describe("asyncHandler", () => {
+    let req: Request;
+    let res: Response;
+    let next: NextFunction;
+
+    beforeEach(() => {
+        vi.clearAllMocks();
+        const mocks = createReqResMocks();
+        ({ req, res, next } = mocks);
+    });
+
+    it("should call next with the error when the provided function fails", async () => {
+        const error = new Error("Async failure");
+        const failingAsyncFunction = async () => {
+            await Promise.reject(error);
+            throw error;
+        };
+        const handler = asyncHandler(failingAsyncFunction);
+        handler(req, res, next);
+
+        await new Promise(process.nextTick);
+        expect(next).toHaveBeenCalledWith(error);
+        expect(next).toHaveBeenCalledTimes(1);
     });
 });

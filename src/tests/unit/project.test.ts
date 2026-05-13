@@ -1,11 +1,15 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 
-import { ProjectController } from "../../api/controllers/project";
-import { mockProjects } from "../utils/projectsMocks";
-import { createReqResMocks } from "../utils/reqResMocks";
+import { ProjectController } from "../../api/controllers/project.js";
+import { mockProjects } from "../utils/projectsMocks.js";
+import { createReqResMocks } from "../utils/reqResMocks.js";
 
 import type { Project } from "../../api/models/project.js";
 import type { Request, Response } from "express";
+
+interface ControllerWithPrivate {
+    buildIndex: () => void;
+}
 
 describe("ProjectController", () => {
     let controller: ProjectController;
@@ -26,6 +30,16 @@ describe("ProjectController", () => {
 
             expect(res.status).toHaveBeenCalledWith(404);
             expect(res.json).toHaveBeenCalledWith(expect.objectContaining({ status: "Not found", data: {} }));
+        });
+
+        it("should return 400 when searching with an invalid ID type", () => {
+            req.params.id = 123 as unknown as string;
+            controller.getProjectById(req, res);
+
+            expect(res.status).toHaveBeenCalledWith(400);
+            expect(res.json).toHaveBeenCalledWith(
+                expect.objectContaining({ status: "Bad Request", message: "Invalid ID" })
+            );
         });
     });
 
@@ -139,12 +153,7 @@ describe("ProjectController", () => {
             const spy = vi.spyOn(Map.prototype, "set");
             spy.mockClear();
 
-            interface ControllerWithPrivate {
-                buildIndex: () => void;
-            }
-
             (controller as unknown as ControllerWithPrivate).buildIndex();
-
             expect(spy).not.toHaveBeenCalled();
             spy.mockRestore();
         });
@@ -155,6 +164,7 @@ describe("ProjectController", () => {
             ] as unknown as Project[];
             const junkController = new ProjectController(junkData);
             req.query.q = "!!!";
+
             junkController.searchProjects(req, res);
             expect(res.status).toHaveBeenCalledWith(404);
         });

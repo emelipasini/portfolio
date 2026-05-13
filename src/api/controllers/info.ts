@@ -1,8 +1,8 @@
-import pageInfo from "../../data/page-info.json";
-import profile from "../../data/profile.json";
-import ContactSchema from "../../schemas/contact";
-import logger from "../../utils/logger";
-import { DiscordService } from "../services/discord";
+import pageInfo from "../../data/page-info.json" with { type: "json" };
+import profile from "../../data/profile.json" with { type: "json" };
+import ContactSchema from "../../schemas/contact.js";
+import logger from "../../utils/logger.js";
+import { DiscordService } from "../services/discord.js";
 
 import type { Request, Response, NextFunction } from "express";
 
@@ -27,10 +27,15 @@ export class InfoController {
         const result = ContactSchema.safeParse(req.body);
 
         if (!result.success) {
-            logger.warn({ issues: result.error.format() }, "Form validation failed");
+            const errors = result.error.issues.map((issue) => ({
+                path: issue.path.join("."),
+                message: issue.message,
+            }));
+
+            logger.warn({ issues: errors }, "Form validation failed");
             return res.status(400).json({
                 status: "Bad Request",
-                ...result.error.format(),
+                errors: errors,
             });
         }
 

@@ -1,7 +1,7 @@
 import { Router } from "express";
 import swaggerUi from "swagger-ui-express";
 
-import swagger from "../docs/swagger.json";
+import swagger from "../docs/swagger.json" with { type: "json" };
 import { globalErrorHandler } from "../middlewares/error.js";
 
 import { AppError } from "./models/appError.js";

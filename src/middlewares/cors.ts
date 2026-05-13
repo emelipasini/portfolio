@@ -1,4 +1,4 @@
-import { env } from "../schemas/env";
+import { env } from "../schemas/env.js";
 
 import type { NextFunction, Request, Response } from "express";
 

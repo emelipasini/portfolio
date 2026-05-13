@@ -1,4 +1,4 @@
-import logger from "../../utils/logger";
+import logger from "../../utils/logger.js";
 
 import type { Project } from "../models/project.js";
 import type { Request, Response } from "express";
@@ -34,29 +34,30 @@ export class ProjectController {
     private buildIndex(): void {
         if (this.isIndexed) return;
 
-        this.projects.forEach((project: Project) => {
+        for (const project of this.projects) {
             const idStr = String(project.id);
 
             this.dataIndex.set(idStr, project);
 
             const terms = new Set([
-                ...project.name.toLowerCase().split(" "),
-                ...project.description.toLowerCase().split(" "),
+                ...project.name.toLowerCase().split(/\s+/),
+                ...project.description.toLowerCase().split(/\s+/),
                 ...project.technologies.map((t) => t.toLowerCase()),
-                ...project.type.toLowerCase().split(" "),
-                ...project.status.toLowerCase().split(" "),
+                ...project.type.toLowerCase().split(/\s+/),
+                ...project.status.toLowerCase().split(/\s+/),
             ]);
 
-            terms.forEach((term) => {
+            for (const term of terms) {
                 const cleanTerm = term.trim().replace(/(?<!\d)\.(?!\w)|[!?;:]/g, "");
-                if (cleanTerm === "") return;
+                if (cleanTerm === "") continue;
 
                 if (!this.searchIndex.has(cleanTerm)) {
-                    this.searchIndex.set(cleanTerm, new Set());
+                    this.searchIndex.set(cleanTerm, new Set<string>());
                 }
+
                 this.searchIndex.get(cleanTerm)?.add(idStr);
-            });
-        });
+            }
+        }
 
         this.isIndexed = true;
     }
@@ -117,6 +118,11 @@ export class ProjectController {
 
     public getProjectById(req: Request, res: Response): Response {
         const id = req.params.id;
+
+        if (typeof id !== "string") {
+            return res.status(400).json({ status: "Bad Request", message: "Invalid ID" });
+        }
+
         const project = this.dataIndex.get(id);
 
         if (project === undefined) {
