@@ -23,4 +23,5 @@ const logger = pino({
         : undefined,
 });
 
+export type Logger = typeof logger;
 export default logger;
