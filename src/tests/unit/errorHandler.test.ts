@@ -1,6 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 
 import { globalErrorHandler } from "../../middlewares/error";
+import asyncHandler from "../../utils/asyncHandler";
 import { createReqResMocks } from "../utils/reqResMocks";
 
 import type { AppError } from "../../api/models/appError";
@@ -39,5 +40,30 @@ describe("globalErrorHandler", () => {
             status: 500,
             message: "Internal Server Error",
         });
+    });
+});
+
+describe("asyncHandler", () => {
+    let req: Request;
+    let res: Response;
+    let next: NextFunction;
+
+    beforeEach(() => {
+        vi.clearAllMocks();
+        const mocks = createReqResMocks();
+        ({ req, res, next } = mocks);
+    });
+
+    it("should call next with the error when the provided function fails", async () => {
+        const error = new Error("Async failure");
+        const failingAsyncFunction = async () => {
+            await Promise.reject(error);
+            throw error;
+        };
+        const handler = asyncHandler(failingAsyncFunction);
+        await handler(req, res, next);
+
+        expect(next).toHaveBeenCalledWith(error);
+        expect(next).toHaveBeenCalledTimes(1);
     });
 });
