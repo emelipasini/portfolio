@@ -117,6 +117,11 @@ export class ProjectController {
 
     public getProjectById(req: Request, res: Response): Response {
         const id = req.params.id;
+
+        if (typeof id !== "string") {
+            return res.status(400).json({ status: "Bad Request", message: "Invalid ID" });
+        }
+
         const project = this.dataIndex.get(id);
 
         if (project === undefined) {
