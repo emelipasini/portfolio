@@ -4,6 +4,7 @@ import importPlugin from "eslint-plugin-import";
 import nodePlugin from "eslint-plugin-n";
 import promisePlugin from "eslint-plugin-promise";
 import stylistic from "@stylistic/eslint-plugin";
+import globals from "globals";
 
 export default tseslint.config(
     {
@@ -13,6 +14,11 @@ export default tseslint.config(
     ...tseslint.configs.recommendedTypeChecked,
     {
         languageOptions: {
+            globals: {
+                ...globals.node,
+            },
+            ecmaVersion: "latest",
+            sourceType: "module",
             parserOptions: {
                 project: true,
                 tsconfigRootDir: import.meta.dirname,
@@ -36,6 +42,13 @@ export default tseslint.config(
             "@typescript-eslint/space-before-function-paren": "off",
             "@/comma-dangle": ["error", "only-multiline"],
             "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+            "@typescript-eslint/no-unused-expressions": [
+                "error",
+                {
+                    allowShortCircuit: true,
+                    allowTernary: true,
+                },
+            ],
             "@stylistic/member-delimiter-style": [
                 "error",
                 {
