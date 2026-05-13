@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 
-import ContactSchema from "../../schemas/contact";
+import ContactSchema from "../../schemas/contact.js";
 
 describe("Contact Schema - Validations", () => {
     it.each([

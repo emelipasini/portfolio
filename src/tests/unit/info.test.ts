@@ -1,8 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 
-import { InfoController } from "../../api/controllers/info";
-import { DiscordService } from "../../api/services/discord";
-import { createReqResMocks } from "../utils/reqResMocks";
+import { InfoController } from "../../api/controllers/info.js";
+import { DiscordService } from "../../api/services/discord.js";
+import { createReqResMocks } from "../utils/reqResMocks.js";
 
 import type { Request, Response, NextFunction } from "express";
 

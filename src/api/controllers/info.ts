@@ -1,8 +1,8 @@
-import pageInfo from "../../data/page-info.json";
-import profile from "../../data/profile.json";
-import ContactSchema from "../../schemas/contact";
-import logger from "../../utils/logger";
-import { DiscordService } from "../services/discord";
+import pageInfo from "../../data/page-info.json" with { type: "json" };
+import profile from "../../data/profile.json" with { type: "json" };
+import ContactSchema from "../../schemas/contact.js";
+import logger from "../../utils/logger.js";
+import { DiscordService } from "../services/discord.js";
 
 import type { Request, Response, NextFunction } from "express";
 

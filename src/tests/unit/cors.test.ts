@@ -1,8 +1,8 @@
 import { it, expect, describe, vi, beforeEach } from "vitest";
 
-import { corsMiddleware } from "../../middlewares/cors";
-import { env } from "../../schemas/env";
-import { createReqResMocks } from "../utils/reqResMocks";
+import { corsMiddleware } from "../../middlewares/cors.js";
+import { env } from "../../schemas/env.js";
+import { createReqResMocks } from "../utils/reqResMocks.js";
 
 import type { Request, Response, NextFunction } from "express";
 

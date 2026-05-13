@@ -1,8 +1,8 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 
-import { ProjectController } from "../../api/controllers/project";
-import { mockProjects } from "../utils/projectsMocks";
-import { createReqResMocks } from "../utils/reqResMocks";
+import { ProjectController } from "../../api/controllers/project.js";
+import { mockProjects } from "../utils/projectsMocks.js";
+import { createReqResMocks } from "../utils/reqResMocks.js";
 
 import type { Project } from "../../api/models/project.js";
 import type { Request, Response } from "express";

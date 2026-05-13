@@ -1,10 +1,10 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 
-import { globalErrorHandler } from "../../middlewares/error";
-import asyncHandler from "../../utils/asyncHandler";
-import { createReqResMocks } from "../utils/reqResMocks";
+import { globalErrorHandler } from "../../middlewares/error.js";
+import asyncHandler from "../../utils/asyncHandler.js";
+import { createReqResMocks } from "../utils/reqResMocks.js";
 
-import type { AppError } from "../../api/models/appError";
+import type { AppError } from "../../api/models/appError.js";
 import type { Request, Response, NextFunction } from "express";
 
 describe("globalErrorHandler", () => {
@@ -61,8 +61,9 @@ describe("asyncHandler", () => {
             throw error;
         };
         const handler = asyncHandler(failingAsyncFunction);
-        await handler(req, res, next);
+        handler(req, res, next);
 
+        await new Promise(process.nextTick);
         expect(next).toHaveBeenCalledWith(error);
         expect(next).toHaveBeenCalledTimes(1);
     });

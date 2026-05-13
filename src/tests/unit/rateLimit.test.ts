@@ -1,9 +1,9 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from "vitest";
 
-import { createRateLimitMiddleware } from "../../middlewares/rateLimit";
-import { createReqResMocks } from "../utils/reqResMocks";
+import { createRateLimitMiddleware } from "../../middlewares/rateLimit.js";
+import { createReqResMocks } from "../utils/reqResMocks.js";
 
-import type { RateLimitHandler } from "../../middlewares/rateLimit";
+import type { RateLimitHandler } from "../../middlewares/rateLimit.js";
 import type { Request, Response, NextFunction } from "express";
 
 describe("Rate Limit - Unit Tests", () => {
